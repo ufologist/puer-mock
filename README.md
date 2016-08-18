@@ -31,3 +31,13 @@ You can config mock server in [`_mockserver.json`](https://github.com/ufologist/
 
 ## example
 
+眼见为实耳听为虚, puer-mock 让你一秒钟就能拥有一个强大的 mock server, 所以请不要再自己手工做假数据了, 赶快尝试一下让你的工作效率翻番吧!
+
+![puer-mock-example](https://ufologist.github.io/puer-mock/puer-mock-example.png)
+
+## one more thing
+
+谁需要这个工具
+* 前端/APP端
+* 任何与后端接口打交道的人
+* [为什么你需要一个 mock server]()
