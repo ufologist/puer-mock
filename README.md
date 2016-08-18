@@ -25,5 +25,9 @@ npm install puer-mock
 
 You can config mock server in [`_mockserver.json`](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json), mock server will auto reload when you changed `_mockserver.json`.
 
+* comment is nice
+* config route and mock response data template
+* disable a route is convenient
+
 ## example
 
