@@ -1,0 +1,6 @@
+{
+  "name": "puer-mock",
+  "tagline": "Puer + Mock.js = A Configurable mock server with configurable mock(random) data.",
+  "body": "# puer-mock\r\n\r\n[![NPM version][npm-image]][npm-url]\r\n\r\n[npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square\r\n[npm-url]: https://npmjs.org/package/puer-mock\r\n\r\n[Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A Configurable mock server with configurable mock(random) data.\r\n\r\n## install\r\n\r\nPlease install [puer](https://github.com/leeluolee/puer) first.\r\n\r\n```\r\nnpm install puer-mock\r\n```\r\n\r\n## usage\r\n\r\n1. Copy `node_modules/puer-mock/example` files to your project root directory\r\n2. cd `your project root`\r\n3. `puer -a _mockserver.js`\r\n\r\n## config\r\n\r\nYou can config mock server in [`_mockserver.json`](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json), mock server will auto reload when you changed `_mockserver.json`.\r\n\r\n* comment is nice\r\n* config route and mock response data template\r\n* disable a route is convenient\r\n\r\n## example\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
