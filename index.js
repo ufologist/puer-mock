@@ -70,9 +70,9 @@ function puerMock(mockJsFile, mockConfigFile) {
     var _mockConfigFile = mockConfigFile || MOCK_CONFIG_FILE;
     var mockConfig = getMockConfig(_mockConfigFile);
 
-    // 监听 MOCK_CONFIG_FILE 是否改动了, 改动后修改 mock js file 的修改时间,
-    // 以激发 pouer 本身的监听, 让其重新加载 mock js file, 则会重新加载 MOCK_CONFIG_FILE,
-    // 达到刷新 MOCK_CONFIG_FILE 的目的
+    // 监听 mockJsFile 是否改动了, 改动后修改 mockJsFile 的修改时间,
+    // 以激发 puer 本身的监听, 让其重新加载 mockJsFile, 则会重新加载 mockConfigFile,
+    // 达到刷新 mockConfigFile 的目的
     mockConfigFileWatcher = watchFile(_mockConfigFile, function() {
         mockConfigFileWatcher.close();
         fs.utimes(_mockJsFile, new Date(), new Date());
