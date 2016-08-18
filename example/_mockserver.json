@@ -10,7 +10,7 @@
         // 
         // "disabled": true,
 
-        // 通过 mockjs 来定义 response 的 mock 数据
+        // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
         // http://mockjs.com/examples.html
         "response" : {
             // 接口规范可以参考 - 前端通用接口规范
