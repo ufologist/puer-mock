@@ -58,6 +58,13 @@ function watchFile(filename, callback) {
     }
 }
 
+/**
+ * 获取 puer mock route 的配置信息
+ * 
+ * @param mockJsFile {string} mock js file
+ * @param mockConfigFile {string} mock server config file
+ * @return mock route 的配置信息
+ */
 function puerMock(mockJsFile, mockConfigFile) {
     var _mockJsFile = mockJsFile || MOCK_JS_FILE;
     var _mockConfigFile = mockConfigFile || MOCK_CONFIG_FILE;
