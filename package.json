@@ -1,0 +1,28 @@
+{
+  "name": "puer-mock",
+  "version": "1.0.0",
+  "description": "Puer + Mock.js = A Configurable mock server with configurable mock(random) data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ufologist/puer-mock.git"
+  },
+  "keywords": [
+    "puer",
+    "mock",
+    "random"
+  ],
+  "author": "Sun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ufologist/puer-mock/issues"
+  },
+  "homepage": "https://github.com/ufologist/puer-mock",
+  "dependencies": {
+    "mockjs": "^1.0.1-beta2",
+    "strip-json-comments": "^2.0.1"
+  }
+}

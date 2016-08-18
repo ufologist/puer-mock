@@ -1,0 +1,55 @@
+// _mockserver.json - mock 接口的配置文件
+{
+    // 可以在这个 JSON 中使用注释, 方便对接口做一些说明
+    "GET /api/users": {
+        // 我们可以通过代理的方式来代理后端的真实接口
+        // puer -a _mockserver.js -t http://localhost:8001
+        //
+        // 这样当后端接口开发完成以后, 设置 disabled 取消该 mock 接口,
+        // 就可以立马切换到后端的真实接口, 前端完全不用动
+        // 
+        // "disabled": true,
+
+        // 通过 mockjs 来定义 response 的 mock 数据
+        // http://mockjs.com/examples.html
+        "response" : {
+            // 接口规范可以参考 - 前端通用接口规范
+            // https://github.com/f2e-journey/treasure/blob/master/api.md
+            "status": 0,
+            "statusInfo": {
+                "message": "ok"
+            },
+            "data": {
+                "users|10-30": [{
+                    "id": "@id",
+                    "guid": "@guid",
+                    "index": "@increment",
+                    "name": "@cname",
+                    "province": "@province",
+                    "email": "@email",
+                    "desc": "@cparagraph",
+                    "avatar": "@image(200x100)",
+                    "age": "@integer(10, 50)",
+                    "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
+                    "isVip": "@boolean",
+                    "date": "@now",
+                    "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
+                }]
+            }
+        }
+    },
+    "GET /api/user/:id": {
+        "disabled": true,
+        "response" : {
+            "data": {
+                "user": {
+                    "id": "@increment",
+                    "name": "@name",
+                    "title": "@title",
+                    "desc": "@paragraph",
+                    "date": "@datetime"
+                }
+            }
+        }
+    }
+}
