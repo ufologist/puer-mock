@@ -20,6 +20,8 @@ Start a mock server never ever so easy and configurable, no code needed, you onl
 
 Please install [puer](https://github.com/leeluolee/puer) first.
 
+> Puer - more than a live-reload server , built for efficient frontend development
+
 ```
 npm install puer-mock
 ```
@@ -40,7 +42,7 @@ npm install puer-mock
 
 The minimal `_mockserver.json`
 
-```
+```json
 {
     "api": {
         "GET /api/users": {
