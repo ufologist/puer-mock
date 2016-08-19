@@ -122,7 +122,7 @@ puer-mock 还提供了内置的 API doc, 可以查看所有你定义的 API
 ![puer-mock-api-doc](https://ufologist.github.io/puer-mock/puer-mock-api-doc.png?v1)
 
 
-**当然 puer-mock 还不只有这些功能, 让你一秒钟就能拥有一个强大的 mock server, 所以请不要再自己手工做假数据了, 赶快尝试一下让你的工作效率翻番吧!**
+**当然 [puer-mock](https://github.com/ufologist/puer-mock) 还不只有这些功能, 让你一秒钟就能拥有一个强大的 mock server, 所以请不要再自己手工做假数据了, 赶快尝试一下让你的工作效率翻番吧!**
 
 ## 接口管理平台
 
