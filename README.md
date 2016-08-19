@@ -96,6 +96,6 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 谁需要这个工具
 * 前端/APP端
 * 任何与后端接口打交道的人
-* [为什么你需要一个 mock server]()
+* [为什么你需要一个 mock server](https://github.com/ufologist/puer-mock/blob/master/why-your-need-a-mock-server.md)
 
 感谢 puer 提供了这么强大的 mock 机制, 感谢 Mock.js 提供的假数据, 我才有幸做了这么一个扩展工具.
