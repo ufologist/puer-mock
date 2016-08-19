@@ -26,10 +26,26 @@
 
 <p><a href="https://github.com/leeluolee/puer">Puer</a> + <a href="https://github.com/nuysoft/Mock">Mock.js</a> = A Configurable mock server with configurable mock(random) data.</p>
 
+<p>Start a mock server never ever so easy and configurable, no code needed, you only need config some mock api route and some mock data template, it all done! </p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>features</h2>
+
+<ul>
+<li>effective immediately when config changed</li>
+<li>JSONP support</li>
+<li>CORS support</li>
+<li>built-in API doc</li>
+</ul>
+
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>install</h2>
 
 <p>Please install <a href="https://github.com/leeluolee/puer">puer</a> first.</p>
+
+<blockquote>
+<p>Puer - more than a live-reload server , built for efficient frontend development</p>
+</blockquote>
 
 <pre><code>npm install puer-mock
 </code></pre>
@@ -38,25 +54,103 @@
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>usage</h2>
 
 <ol>
-<li>Copy <code>node_modules/puer-mock/example</code> files to your project root directory</li>
+<li>copy <code>node_modules/puer-mock/example</code> files to your project root directory</li>
 <li>cd <code>your project root</code>
 </li>
 <li><code>puer -a _mockserver.js</code></li>
+<li>view mock api
+
+<ul>
+<li>open <code>http://localhost:8000/api/users</code> view mock api return mock data</li>
+<li>open <code>http://localhost:8000/api/users?callback=test</code> view mock api return mock data by JSONP</li>
+<li>open <code>http://localhost:8000/_apidoc</code> view built-in all mock api doc</li>
+</ul>
+</li>
+<li>define your mock api in <code>_mockserver.json</code>
+</li>
+<li>view your mock api(Yes! it with immediate effect)</li>
 </ol>
 
 <h2>
 <a id="config" class="anchor" href="#config" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>config</h2>
 
-<p>You can config mock server in <a href="https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json"><code>_mockserver.json</code></a>, mock server will auto reload when you changed <code>_mockserver.json</code>.</p>
+<p>The minimal <code>_mockserver.json</code></p>
+
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>api<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>GET /api/users<span class="pl-pds">"</span></span>: {
+            <span class="pl-s"><span class="pl-pds">"</span>response<span class="pl-pds">"</span></span>: {}
+        }
+    }
+}</pre></div>
+
+<p>You can see more settings to config mock server in <a href="https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json"><code>_mockserver.json</code></a>.</p>
 
 <ul>
 <li>comment is nice</li>
-<li>config route and mock response data template</li>
+<li>config route and mock response data template is so easy</li>
+<li>more data template please see <a href="http://mockjs.com/examples.html">Mock.js examples</a>
+</li>
 <li>disable a route is convenient</li>
+<li>mock server will effective immediately when you changed <code>_mockserver.json</code>
+</li>
+</ul>
+
+<h2>
+<a id="customize" class="anchor" href="#customize" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>customize</h2>
+
+<ul>
+<li>
+<p>You may customize <code>/_apidoc</code> route service a more graceful doc.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// _mockserver.js</span>
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>puer-mock<span class="pl-pds">'</span></span>)(<span class="pl-c1">null</span>, <span class="pl-c1">null</span>, <span class="pl-k">function</span>(<span class="pl-smi">mockConfig</span>) {
+    <span class="pl-c">// 任你自由发挥</span>
+    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;pre&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>(mockConfig, <span class="pl-c1">null</span>, <span class="pl-c1">4</span>) <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/pre&gt;<span class="pl-pds">'</span></span>;
+});</pre></div>
+</li>
+<li>
+<p>Play it fun with your imagination.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// _mockserver.js</span>
+<span class="pl-k">var</span> puerMock <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>puer-mock<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> routeConfig <span class="pl-k">=</span> <span class="pl-en">puerMock</span>();
+<span class="pl-c">// 其实你完全可以这样来玩, 在这里接着定义 route 即可, 发挥你的想象力</span>
+<span class="pl-c">// 例如定义一个常用的 500 接口, 来测试服务器报错的情况</span>
+routeConfig[<span class="pl-s"><span class="pl-pds">'</span>GET /500<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">request</span>, <span class="pl-smi">response</span>, <span class="pl-smi">next</span>) {
+    <span class="pl-smi">response</span>.<span class="pl-c1">status</span>(<span class="pl-c1">500</span>).<span class="pl-en">end</span>();
+};
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> routeConfig;</pre></div>
+</li>
 </ul>
 
 <h2>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>example</h2>
+
+<p>眼见为实耳听为虚, puer-mock 让你一秒钟就能拥有一个强大的 mock server, 所以请不要再自己手工做假数据了, 赶快尝试一下让你的工作效率翻番吧!</p>
+
+<h3>
+<a id="配置-api-并生成随机数据" class="anchor" href="#%E9%85%8D%E7%BD%AE-api-%E5%B9%B6%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>配置 API 并生成随机数据</h3>
+
+<p><img src="https://ufologist.github.io/puer-mock/puer-mock-example.png" alt="puer-mock-example"></p>
+
+<h3>
+<a id="查看所有的-api-接口文档" class="anchor" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%9A%84-api-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>查看所有的 API 接口文档</h3>
+
+<p><img src="https://ufologist.github.io/puer-mock/puer-mock-api-doc.png?v1" alt="puer-mock-api-doc"></p>
+
+<h2>
+<a id="one-more-thing" class="anchor" href="#one-more-thing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>one more thing</h2>
+
+<p>谁需要这个工具</p>
+
+<ul>
+<li>前端/APP端</li>
+<li>任何与后端接口打交道的人</li>
+<li><a href="https://github.com/ufologist/puer-mock/blob/master/why-your-need-a-mock-server.md">为什么你需要一个 mock server</a></li>
+</ul>
+
+<p>感谢 puer 提供了如此强大的 mock 机制, 感谢 Mock.js 带来的假数据, 我才有幸做了这么一个扩展工具.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ufologist/puer-mock">puer-mock</a> is maintained by <a href="https://github.com/ufologist">ufologist</a>.</span>
