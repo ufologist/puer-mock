@@ -47,7 +47,7 @@
 * 依靠 puer 可以加入随机因素, 但随机机制还得自己去实现, 不够方便
 
 那么我们使用前端的 Mock 库来实现随机的数据机制, 不就 OK 了吗?
-于是我尝试了 [Mock.js - 生成随机数据，拦截 Ajax 请求](https://github.com/nuysoft/Mock), 在前端解决前端的假数据问题.
+于是我尝试了 [Mock.js](https://github.com/nuysoft/Mock "生成随机数据，拦截 Ajax 请求"), 在前端解决前端的假数据问题.
 
 ```html
 <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
