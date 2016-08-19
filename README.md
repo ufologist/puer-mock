@@ -62,28 +62,28 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 
 ## customize
 
-You may customize `/_apidoc` route service a more graceful doc.
+* You may customize `/_apidoc` route service a more graceful doc.
 
-```javascript
-// _mockserver.js
-module.exports = require('puer-mock')(null, null, function(mockConfig) {
-    // 任你自由发挥
-    return '<pre>' + JSON.stringify(mockConfig, null, 4) + '</pre>';
-});
-```
+  ```javascript
+  // _mockserver.js
+  module.exports = require('puer-mock')(null, null, function(mockConfig) {
+      // 任你自由发挥
+      return '<pre>' + JSON.stringify(mockConfig, null, 4) + '</pre>';
+  });
+  ```
 
-You may play it fun use your imagination.
+* Play it fun with your imagination.
 
-```javascript
-// _mockserver.js
-var puerMock = require('puer-mock');
-var routeConfig = puerMock();
-// 例如定义一个常用的 500 接口, 来测试服务器报错的情况
-routeConfig['GET /500'] = function(request, response, next) {
-    response.status(500).end();
-};
-module.exports = routeConfig;
-```
+  ```javascript
+  // _mockserver.js
+  var puerMock = require('puer-mock');
+  var routeConfig = puerMock();
+  // 例如定义一个常用的 500 接口, 来测试服务器报错的情况
+  routeConfig['GET /500'] = function(request, response, next) {
+      response.status(500).end();
+  };
+  module.exports = routeConfig;
+  ```
 
 ## example
 
