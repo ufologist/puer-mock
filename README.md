@@ -11,7 +11,7 @@ Start a mock server never ever so easy and configurable, no code needed, you onl
 
 ## features
 
-* auto reload when config changed
+* effective immediately when config changed
 * JSONP support
 * CORS support
 * built-in API doc
@@ -29,8 +29,12 @@ npm install puer-mock
 1. copy `node_modules/puer-mock/example` files to your project root directory
 2. cd `your project root`
 3. `puer -a _mockserver.js`
-4. open `http://localhost:8000/api/users` view mock api return mock data
-5. open `http://localhost:8000/_apidoc` view built-in all mock api doc
+4. view mock api
+  * open `http://localhost:8000/api/users` view mock api return mock data
+  * open `http://localhost:8000/api/users?callback=test` view mock api return mock data by JSONP
+  * open `http://localhost:8000/_apidoc` view built-in all mock api doc
+5. define your mock api in `_mockserver.json`
+6. view your mock api(Yes! it with immediate effect)
 
 ## config
 
@@ -50,9 +54,9 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 
 * comment is nice
 * config route and mock response data template is so easy
-* more data template please see [Mock.js examples](http://mockjs.com/examples.html);
+* more data template please see [Mock.js examples](http://mockjs.com/examples.html)
 * disable a route is convenient
-* mock server will auto reload when you changed `_mockserver.json`
+* mock server will effective immediately when you changed `_mockserver.json`
 
 ## customize
 
