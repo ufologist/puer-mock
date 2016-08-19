@@ -91,6 +91,9 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 
 ![puer-mock-example](https://ufologist.github.io/puer-mock/puer-mock-example.png)
 
+
+![puer-mock-api-doc](https://ufologist.github.io/puer-mock/puer-mock-api-doc.png)
+
 ## one more thing
 
 谁需要这个工具
