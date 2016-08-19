@@ -13,25 +13,37 @@ function getMockConfig(mockConfigFile) {
     return JSON.parse(stripJsonComments(mockConfigContent));
 }
 
-function getRouteConfig(mockConfig) {
+// 生成 route 配置
+function generateRouteConfig(mockConfig) {
     var routeConfig = {};
 
-    for (var routeKey in mockConfig) {
-        var routeResponse = mockConfig[routeKey];
+    var apiMockConifg = mockConfig.api;
+    for (var routeKey in apiMockConifg) {
+        var mock = apiMockConifg[routeKey];
 
-        if (routeResponse.disabled) {
+        if (mock.disabled) {
             console.info(routeKey + ' disabled');
         } else {
-            // 注意要使用闭包固定住 mockConfig 中的数据
-            routeConfig[routeKey] = (function(routeResponse) {
+            // 注意要使用闭包固定住 apiMockConifg 中的数据
+            routeConfig[routeKey] = (function(mock) {
                 return function(request, response, next) {
-                    var mockResponse = Mock.mock(routeResponse.response);
+                    var mockResponse = Mock.mock(mock.response);
+
+                    // enable CORS
+                    // https://github.com/expressjs/cors
+                    response.set({
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+                        'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type',
+                        'Access-Control-Allow-Credentials': 'true'
+                    });
+
                     // 直接使用 JSONP 方式, 没有 JSONP 参数时生成 JSON, 有 JSONP 参数则生成 JSONP
                     // 例如: http://a.com/a => 接口输出 JSON
                     //       http://a.com/a?callback=a => 接口输出 JSONP
                     response.jsonp(mockResponse);
                 };
-            })(routeResponse);
+            })(mock);
         }
     }
 
@@ -58,6 +70,31 @@ function watchFile(filename, callback) {
     }
 }
 
+// 将 API 进行分组排列
+function groupApiByModuleName(mockConfig) {
+    // clone mockConfig
+    var _mockConfig = JSON.parse(JSON.stringify(mockConfig));
+
+    var apiMockConifg = _mockConfig.api;
+    for (var routeKey in apiMockConifg) {
+        var mock = apiMockConifg[routeKey];
+        // 分组了就不需要原来的属性了
+        delete apiMockConifg[routeKey];
+
+        var moduleName = '';
+        if (mock.info && mock.info.module) {
+            moduleName = mock.info.module;
+        }
+        if (!apiMockConifg[moduleName]) {
+            apiMockConifg[moduleName] = {};
+        }
+
+        apiMockConifg[moduleName][routeKey] = mock;
+    }
+
+    return _mockConfig;
+}
+
 /**
  * 获取 puer mock route 的配置信息
  * 
@@ -65,9 +102,10 @@ function watchFile(filename, callback) {
  * @param mockConfigFile {string} mock server config file
  * @return mock route 的配置信息
  */
-function puerMock(mockJsFile, mockConfigFile) {
+function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
     var _mockJsFile = mockJsFile || MOCK_JS_FILE;
     var _mockConfigFile = mockConfigFile || MOCK_CONFIG_FILE;
+
     var mockConfig = getMockConfig(_mockConfigFile);
 
     // 监听 mockJsFile 是否改动了, 改动后修改 mockJsFile 的修改时间,
@@ -78,7 +116,19 @@ function puerMock(mockJsFile, mockConfigFile) {
         fs.utimes(_mockJsFile, new Date(), new Date());
     });
 
-    return getRouteConfig(mockConfig);
+    var routeConfig = generateRouteConfig(mockConfig);
+    var groupMockConfig = groupApiByModuleName(mockConfig);
+
+    // 列出所有的 mock API 作为一个接口文档
+    routeConfig['GET /_apidoc'] = function(request, response, next) {
+        if (renderApiDoc) {
+            response.send(renderApiDoc(groupMockConfig));
+        } else {
+            response.send(groupMockConfig);
+        }
+    };
+
+    return routeConfig;
 }
 
 module.exports = puerMock;

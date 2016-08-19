@@ -1,53 +1,92 @@
 // _mockserver.json - mock 接口的配置文件
+// 可以在这个 JSON 中使用注释, 方便对接口做一些说明
+//
+// The minimal _mockserver.json, JSON 必须包含如下信息, 其他字段均是可选字段
+// {
+//     "api": {
+//         "GET /api/users": {
+//             "response": {}
+//         }
+//     }
+// }
 {
-    // 可以在这个 JSON 中使用注释, 方便对接口做一些说明
-    "GET /api/users": {
-        // 我们可以通过代理的方式来代理后端的真实接口
-        // puer -a _mockserver.js -t http://localhost:8001
-        //
-        // 这样当后端接口开发完成以后, 设置 disabled 取消该 mock 接口,
-        // 就可以立马切换到后端的真实接口, 前端完全不用动
-        // 
-        // "disabled": true,
-
-        // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
-        // http://mockjs.com/examples.html
-        "response" : {
-            // 接口规范可以参考 - 前端通用接口规范
-            // https://github.com/f2e-journey/treasure/blob/master/api.md
-            "status": 0,
-            "statusInfo": {
-                "message": "ok"
-            },
-            "data": {
-                "users|10-30": [{
-                    "id": "@id",
-                    "guid": "@guid",
-                    "index": "@increment",
-                    "name": "@cname",
-                    "province": "@province",
-                    "email": "@email",
-                    "desc": "@cparagraph",
-                    "avatar": "@image(200x100)",
-                    "age": "@integer(10, 50)",
-                    "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
-                    "isVip": "@boolean",
-                    "date": "@now",
-                    "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
-                }]
-            }
-        }
+    // 项目的一些描述信息
+    "info": {
+        "summary": "xxx 项目接口文档",
+        "description": "描述下高大上的项目接口文档是什么样子的"
     },
-    "GET /api/user/:id": {
-        "disabled": true,
-        "response" : {
-            "data": {
-                "user": {
-                    "id": "@increment",
-                    "name": "@name",
-                    "title": "@title",
-                    "desc": "@paragraph",
-                    "date": "@datetime"
+
+    "api": {
+        "GET /api/users": {
+            // 我们可以通过代理的方式来代理后端的真实接口
+            // puer -a _mockserver.js -t http://localhost:8001
+            //
+            // 这样当后端接口开发完成以后, 设置 disabled 取消该 mock 接口,
+            // 就可以立马切换到后端的真实接口, 前端完全不用动
+            // 
+            // "disabled": true,
+
+            // 接口的一些描述信息
+            "info": {
+                "module": "用户", // 用于对 API 进行分组
+                "summary": "获取所有用户",
+                "description": "获取所有用户的信息",
+                "author": "Sun"
+            },
+
+            // TODO 作为保留字段, 用于校验前端的输入参数是否与接口匹配
+            "request": {
+                "param": {}, // 可能是 querystring 或者 application/x-www-form-urlencoded
+                "header": {} // 使用 header 来传递参数
+            },
+
+            // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
+            // http://mockjs.com/examples.html
+            "response": {
+                // 接口规范可以参考 - 前端通用接口规范
+                // https://github.com/f2e-journey/treasure/blob/master/api.md
+                "status": 0,
+                "statusInfo": {
+                    "message": "ok"
+                },
+                "data": {
+                    "users|10-30": [{
+                        "id": "@id",
+                        "guid": "@guid",
+                        "index": "@increment",
+                        "name": "@cname",
+                        "province": "@province",
+                        "email": "@email",
+                        "desc": "@cparagraph",
+                        "avatar": "@image(200x100)",
+                        "age": "@integer(10, 50)",
+                        "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
+                        "isVip": "@boolean",
+                        "date": "@now",
+                        "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
+                    }]
+                }
+            }
+        },
+        "GET /api/user/:id": {
+            "disabled": true,
+
+            "info": {
+                "module": "", // 用于对 API 进行分组
+                "summary": "获取单个用户",
+                "description": "获取单个用户的信息",
+                "author": "Sun"
+            },
+
+            "response": {
+                "data": {
+                    "user": {
+                        "id": "@increment",
+                        "name": "@name",
+                        "title": "@title",
+                        "desc": "@paragraph",
+                        "date": "@datetime"
+                    }
                 }
             }
         }

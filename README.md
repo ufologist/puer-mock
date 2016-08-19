@@ -7,6 +7,15 @@
 
 [Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A Configurable mock server with configurable mock(random) data.
 
+Start a mock server never ever so easy and configurable, no code needed, you only need config some mock api route and some mock data template, it all done! 
+
+## features
+
+* auto reload when config changed
+* JSONP support
+* CORS support
+* built-in API doc
+
 ## install
 
 Please install [puer](https://github.com/leeluolee/puer) first.
@@ -17,17 +26,58 @@ npm install puer-mock
 
 ## usage
 
-1. Copy `node_modules/puer-mock/example` files to your project root directory
+1. copy `node_modules/puer-mock/example` files to your project root directory
 2. cd `your project root`
 3. `puer -a _mockserver.js`
+4. open `http://localhost:8000/api/users` view mock api return mock data
+5. open `http://localhost:8000/_apidoc` view built-in all mock api doc
 
 ## config
 
-You can config mock server in [`_mockserver.json`](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json), mock server will auto reload when you changed `_mockserver.json`.
+The minimal `_mockserver.json`
+
+```
+{
+    "api": {
+        "GET /api/users": {
+            "response": {}
+        }
+    }
+}
+```
+
+You can see more settings to config mock server in [`_mockserver.json`](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json).
 
 * comment is nice
-* config route and mock response data template
+* config route and mock response data template is so easy
+* more data template please see [Mock.js examples](http://mockjs.com/examples.html);
 * disable a route is convenient
+* mock server will auto reload when you changed `_mockserver.json`
+
+## customize
+
+You may customize `/_apidoc` route service a more graceful doc.
+
+```javascript
+// _mockserver.js
+module.exports = require('puer-mock')(null, null, function(mockConfig) {
+    // 任你自由发挥
+    return '<pre>' + JSON.stringify(mockConfig, null, 4) + '</pre>';
+});
+```
+
+You may play it fun use your imagination.
+
+```javascript
+// _mockserver.js
+var puerMock = require('puer-mock');
+var routeConfig = puerMock();
+// 例如定义一个常用的 500 接口, 来测试服务器报错的情况
+routeConfig['GET /500'] = function(request, response, next) {
+    response.status(500).end();
+};
+module.exports = routeConfig;
+```
 
 ## example
 
@@ -41,3 +91,5 @@ You can config mock server in [`_mockserver.json`](https://github.com/ufologist/
 * 前端/APP端
 * 任何与后端接口打交道的人
 * [为什么你需要一个 mock server]()
+
+感谢 puer 提供了这么强大的 mock 机制, 感谢 Mock.js 提供的假数据, 我才有幸做了这么一个扩展工具.
