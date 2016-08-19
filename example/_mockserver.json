@@ -13,7 +13,7 @@
     // 项目的一些描述信息
     "info": {
         "summary": "xxx 项目接口文档",
-        "description": "描述下高大上的项目接口文档是什么样子的"
+        "description": "如此高大上的接口文档 Powered by puer-mock"
     },
 
     "api": {
