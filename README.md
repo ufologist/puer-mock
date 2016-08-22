@@ -1,10 +1,11 @@
 # puer-mock
 
-[![NPM version][npm-image]][npm-url] [CHANGELOG][CHANGELOG]
+[![NPM version][npm-image]][npm-url]
 
 [npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/puer-mock
 [CHANGELOG]: https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md
+[License]: https://github.com/ufologist/puer-mock/blob/master/LICENSE
 
 [Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A configurable mock server with configurable mock(random) data.
 
@@ -103,5 +104,7 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 * 前端/APP端
 * 任何与后端接口打交道的人
 * [为什么你需要一个 mock server](https://github.com/ufologist/puer-mock/blob/master/why-your-need-a-mock-server.md)
+* [CHANGELOG][CHANGELOG]
+* License: [MIT][License]
 
 感谢 puer 提供了如此强大的 mock 机制, 感谢 Mock.js 带来的假数据, 我才有幸做了这么一个扩展工具.
