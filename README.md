@@ -5,7 +5,7 @@
 [npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/puer-mock
 
-[Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A Configurable mock server with configurable mock(random) data.
+[Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A configurable mock server with configurable mock(random) data.
 
 Start a mock server never ever so easy and configurable, no code needed, you only need config some mock api route and some mock data template, it all done! 
 
