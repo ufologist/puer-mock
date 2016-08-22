@@ -91,7 +91,7 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 眼见为实耳听为虚, puer-mock 让你一秒钟就能拥有一个强大的 mock server, 所以请不要再自己手工做假数据了, 赶快尝试一下让你的工作效率翻番吧!
 
 ### 配置 API 并生成随机数据
-![puer-mock-example](https://ufologist.github.io/puer-mock/puer-mock-example.png)
+![puer-mock-example](https://ufologist.github.io/puer-mock/puer-mock-example.png?v1)
 
 ### 查看所有的 API 接口文档
 ![puer-mock-api-doc](https://ufologist.github.io/puer-mock/puer-mock-api-doc.png?v1)
