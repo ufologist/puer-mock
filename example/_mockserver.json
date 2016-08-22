@@ -68,6 +68,17 @@
                 }
             }
         },
+        "GET /api/queryOrder": { // 应对不符合 REST 风格的 API 例如: /api.php?act=queryOrder 
+            "response": {
+                "data": {
+                    "order": {
+                        "id": "@increment",
+                        "url": "@url",
+                        "time": "@time"
+                    }
+                }
+            }
+        },
         "GET /api/user/:id": {
             "disabled": true,
 
