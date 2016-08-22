@@ -1,9 +1,10 @@
 # puer-mock
 
-[![NPM version][npm-image]][npm-url]
+[![NPM version][npm-image]][npm-url] [CHANGELOG][CHANGELOG]
 
 [npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/puer-mock
+[CHANGELOG]: https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md
 
 [Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A configurable mock server with configurable mock(random) data.
 
