@@ -197,3 +197,15 @@ puer-mock 具有以下特点
 * [CrapApi](https://github.com/EhsanTang/CrapApi)
 
   > 应用接口管理系统
+
+* [SosoApi](http://www.sosoapi.com/)
+
+  > 专注于API接口文档管理及线上线下测试的API服务平台。生成基于swagger ui 文档格式的json，既可在线进行测试也可下载相关的json部署到自己的服务器上，既方便又快捷。
+
+* [FMS](https://github.com/mobejs/mobe)
+
+  > Front Mock Server | 前端数据模拟服务器
+
+* [imitator](https://github.com/hanan198501/imitator)
+
+  > 一个简单的nodejs服务器，可以实现数据模拟，静态资源映射，HTTP代理等服务
