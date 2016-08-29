@@ -173,3 +173,27 @@ puer-mock 具有以下特点
 * [Creating Help Pages for ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages)
 
   > When you create a web API, it is often useful to create a help page, so that other developers will know how to call your API. You could create all of the documentation manually, but it is better to autogenerate as much as possible. ASP.NET Web API provides a library for auto-generating help pages at run time. [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle) that uses ApiExplorer to generate [Swagger](http://swagger.io/) Docs.
+
+* [apiDoc](https://github.com/apidoc/apidoc)
+
+  > apiDoc creates a documentation from API descriptions in your source code.
+
+* [EasyPM](https://easypm.cn/)
+
+  > RESTful API 管理: 帮助采用RESTful架构的团队更方便地管理API，并且支持版本管理，也可以一键生成API文档
+
+* [EasyAPI](http://www.easyapi.com/)
+
+  > 一个为您提供API管理、API测试、API监控、API文档的综合性API服务平台
+
+* [小幺鸡](http://git.oschina.net/zhoujingjie/apiManager)
+
+  > [小幺鸡](http://www.xiaoyaoji.com.cn/index.html)简单好用的在线接口管理系统, 和 RAP 类似
+
+* [Apizza](http://apizza.cc/)
+
+  > Api管理工具，在线调试，自动生成APi文档
+
+* [CrapApi](https://github.com/EhsanTang/CrapApi)
+
+  > 应用接口管理系统
