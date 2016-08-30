@@ -28,8 +28,8 @@
 
             // 接口的一些描述信息
             "info": {
-                "module": "用户", // 用于对 API 进行分组
                 "summary": "获取所有用户",
+                "module": "用户", // 用于对 API 进行分组
                 "description": "获取所有用户的信息",
                 "author": "Sun"
             },
@@ -83,8 +83,8 @@
             "disabled": true,
 
             "info": {
-                "module": "", // 用于对 API 进行分组
                 "summary": "获取单个用户",
+                "module": "", // 用于对 API 进行分组
                 "description": "获取单个用户的信息",
                 "author": "Sun"
             },
