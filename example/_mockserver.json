@@ -35,9 +35,20 @@
             },
 
             // TODO 作为保留字段, 用于校验前端的输入参数是否与接口匹配
+            // 目前只用作说明接口需要什么参数, 没有实质的验证逻辑
             "request": {
-                "param": {}, // 可能是 querystring 或者 application/x-www-form-urlencoded
-                "header": {} // 使用 header 来传递参数
+                "param": {
+                    // 定义 key-value 型的数据,
+                    // 可能是 URL querystring 或者 application/x-www-form-urlencoded
+                },
+                "header": {
+                    // 使用 header 来传递参数, 或者定义 body 的数据类型
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "body": {
+                    // 可以将所有参数放到 request body 中, 例如 JSON 数据,
+                    // 通过上面的 Content-Type 来定义
+                }
             },
 
             // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
