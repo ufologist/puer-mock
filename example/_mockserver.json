@@ -45,11 +45,20 @@
             // 这几种方式基本上都在传递 key-value 型的参数数据
             // 如果要传递复杂的 raw 型数据(例如整个 JSON), 则需要通过设置 Content-Type HEADER 来说明,
             // 在将整个数据体放置在 body 中即可
+            //
+            // 可以在参数数据中指定数据类型,
+            // 目前支持的数据类型有: number, string, boolean, object
+            // 复杂数据类型 object, 一般用于复杂的 key-value 型数据,
+            // 例如: GET /shoes?shoe[color]=blue&shoe[type]=converse
+            // request.query.shoe.color
+            // 或者用于在 body 中传递 JSON 数据时使用
             "request": {
                 // 通过 URL querystring 定义 key-value 型的参数数据
                 "querystring": {
-                    "querystring1": 1,
-                    "querystring2": "2"
+                    "querystring1": 1,       // number, 整数或者小数
+                    "querystring2": "1",     // string
+                    "querystring3": true,    // boolean
+                    "querystring4": {"p": 1} // object
                 },
                 // 可以使用 header 来传递参数, 或者通过 Content-Type 定义 body 的数据类型
                 "header": {
@@ -60,19 +69,22 @@
                     // "Content-Type": "application/json"
 
                     // 或者比较少用的还有整个表单数据, 则设置为
-                    // "Content-Type": "multipart/form-data" 
+                    // "Content-Type": "multipart/form-data"
+
+                    // 或者使用自定义 header 来传递数据
+                    // "X-Custom-Header": "header-value"
                 },
                 // 可以在 body 中放置参数数据, 当为 GET 请求时, 不可以设置 body
                 "body": {
                     // 当为 POST 请求时, 将表单编码的 key-value 参数数据放在 body 中
-                    // 例如:
                     "formurlencoded1": 1,
-                    "formurlencoded2": "2"
+                    "formurlencoded2": "1",
+                    "formurlencoded3": true,
+                    "formurlencoded4": {"p": 1}
                 }
                 // 如果要在 body 中放置 raw 数据, 例如 JSON 数据,
                 // 需要先将 Content-Type 定义为 application/json, 再将整个数据设置在 body 上即可
-                // 例如:
-                // "body": {
+                // "body": { // object 数据类型
                 //     "name": {
                 //         "n1": "1"
                 //     },
