@@ -22,7 +22,7 @@
       <h1>
 <a id="puer-mock" class="anchor" href="#puer-mock" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>puer-mock</h1>
 
-<p><a href="https://npmjs.org/package/puer-mock"><img src="https://img.shields.io/npm/v/puer-mock.svg?style=flat-square" alt="NPM version"></a></p>
+<p><a href="https://npmjs.org/package/puer-mock"><img src="https://img.shields.io/npm/v/puer-mock.svg?style=flat-square" alt="NPM version"></a> <a href="https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md"><img src="https://img.shields.io/badge/CHANGE-LOG-blue.svg?style=flat-square" alt="changelog"></a> <a href="https://github.com/ufologist/puer-mock/blob/master/LICENSE"><img src="https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square" alt="licese-image"></a></p>
 
 <p><a href="https://github.com/leeluolee/puer">Puer</a> + <a href="https://github.com/nuysoft/Mock">Mock.js</a> = A configurable mock server with configurable mock(random) data.</p>
 
@@ -63,7 +63,7 @@
 <ul>
 <li>open <code>http://localhost:8000/api/users</code> view mock api return mock data</li>
 <li>open <code>http://localhost:8000/api/users?callback=test</code> view mock api return mock data by JSONP</li>
-<li>open <code>http://localhost:8000/_apidoc</code> view built-in all mock api doc</li>
+<li>open <code>http://localhost:8000/_apidoc.html</code> view built-in all mock api doc</li>
 </ul>
 </li>
 <li>define your mock api in <code>_mockserver.json</code>
@@ -101,13 +101,20 @@
 
 <ul>
 <li>
-<p>You may customize <code>/_apidoc</code> route service a more graceful doc.</p>
+<p>You may customize mock api doc</p>
+
+<ul>
+<li>
+<p>You may customize <code>/_apidoc</code> route direct service a more graceful doc</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-c">// _mockserver.js</span>
 <span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>puer-mock<span class="pl-pds">'</span></span>)(<span class="pl-c1">null</span>, <span class="pl-c1">null</span>, <span class="pl-k">function</span>(<span class="pl-smi">mockConfig</span>) {
     <span class="pl-c">// 任你自由发挥</span>
     <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;pre&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>(mockConfig, <span class="pl-c1">null</span>, <span class="pl-c1">4</span>) <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/pre&gt;<span class="pl-pds">'</span></span>;
 });</pre></div>
+</li>
+<li><p>You may customize <code>/_apidoc.html</code> which get mock api JSON from <code>/_apidoc</code>, you may totally implement it by yourself</p></li>
+</ul>
 </li>
 <li>
 <p>Play it fun with your imagination.</p>
@@ -136,6 +143,12 @@ routeConfig[<span class="pl-s"><span class="pl-pds">'</span>GET /500<span class=
 
 <h3>
 <a id="查看所有的-api-接口文档" class="anchor" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%9A%84-api-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>查看所有的 API 接口文档</h3>
+
+<p>通过 <code>/_apidoc.html</code> 查看接口文档</p>
+
+<p><img src="https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png" alt="puer-mock-api-doc-html"></p>
+
+<p>通过 <code>/_apidoc</code> 直接查看 JSON 数据, 即查看 mock server 配置了哪些 API(使用 <a href="https://www.baidufe.com/fehelper">FeHelper 插件</a> 格式化了 JSON 数据)</p>
 
 <p><img src="https://ufologist.github.io/puer-mock/puer-mock-api-doc.png?v1" alt="puer-mock-api-doc"></p>
 
