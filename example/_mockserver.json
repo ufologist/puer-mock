@@ -36,19 +36,51 @@
 
             // TODO 作为保留字段, 用于校验前端的输入参数是否与接口匹配
             // 目前只用作说明接口需要什么参数, 没有实质的验证逻辑
+            // 
+            // 前端给后端接口传递参数的方式一般有三种
+            // 1. querystring 即在 URL 中添加参数
+            // 2. header 即在 HTTP REQUEST HEADER 中添加参数
+            // 3. body 即在 HTTP REQUEST BODY 中添加参数
+            // 
+            // 这几种方式基本上都在传递 key-value 型的参数数据
+            // 如果要传递复杂的 raw 型数据(例如整个 JSON), 则需要通过设置 Content-Type HEADER 来说明,
+            // 在将整个数据体放置在 body 中即可
             "request": {
-                "param": {
-                    // 定义 key-value 型的数据,
-                    // 可能是 URL querystring 或者 application/x-www-form-urlencoded
+                // 通过 URL querystring 定义 key-value 型的参数数据
+                "querystring": {
+                    "querystring1": 1,
+                    "querystring2": "2"
                 },
+                // 可以使用 header 来传递参数, 或者通过 Content-Type 定义 body 的数据类型
                 "header": {
-                    // 使用 header 来传递参数, 或者定义 body 的数据类型
+                    // 一般的 Content-Type 有表单编码, POST 请求时默认是这个类型
                     // "Content-Type": "application/x-www-form-urlencoded"
+
+                    // 或者直接使用 body 来传递 raw 数据, 例如 JSON 数据, 或者 XML 之类
+                    // "Content-Type": "application/json"
+
+                    // 或者比较少用的还有整个表单数据, 则设置为
+                    // "Content-Type": "multipart/form-data" 
                 },
+                // 可以在 body 中放置参数数据, 当为 GET 请求时, 不可以设置 body
                 "body": {
-                    // 可以将所有参数放到 request body 中, 例如 JSON 数据,
-                    // 通过上面的 Content-Type 来定义
+                    // 当为 POST 请求时, 将表单编码的 key-value 参数数据放在 body 中
+                    // 例如:
+                    "formurlencoded1": 1,
+                    "formurlencoded2": "2"
                 }
+                // 如果要在 body 中放置 raw 数据, 例如 JSON 数据,
+                // 需要先将 Content-Type 定义为 application/json, 再将整个数据设置在 body 上即可
+                // 例如:
+                // "body": {
+                //     "name": {
+                //         "n1": "1"
+                //     },
+                //     "list": [{
+                //         "p1": 1,
+                //         "p2": 2
+                //     }]
+                // }
             },
 
             // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
