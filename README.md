@@ -111,7 +111,7 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 
 通过 `/_apidoc.html` 查看接口文档
 
-![puer-mock-api-doc-html](https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png)
+![puer-mock-api-doc-html](https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png?v1)
 
 通过 `/_apidoc` 直接查看 JSON 数据, 即查看 mock server 配置了哪些 API(使用 [FeHelper 插件](https://www.baidufe.com/fehelper) 格式化了 JSON 数据)
 
