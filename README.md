@@ -35,6 +35,13 @@ npm install puer-mock
 1. copy `node_modules/puer-mock/example` files to your project root directory
 2. cd `your project root`
 3. `puer -a _mockserver.js`
+
+   You may define a npm script in `package.json`, than use `npm run dev` next time. 
+
+   ```json
+   "dev": "puer -a _mockserver.js"
+   ```
+
 4. view mock api
   * open `http://localhost:8000/api/users` view mock api return mock data
   * open `http://localhost:8000/api/users?callback=test` view mock api return mock data by JSONP
