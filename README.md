@@ -6,7 +6,7 @@
 [npm-url]: https://npmjs.org/package/puer-mock
 [licese-image]: https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square
 [licese-url]: https://github.com/ufologist/puer-mock/blob/master/LICENSE
-[changelog-image]: https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square
+[changelog-image]: https://img.shields.io/badge/CHANGE-LOG-blue.svg?style=flat-square
 [changelog-url]: https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md
 
 [Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A configurable mock server with configurable mock(random) data.
