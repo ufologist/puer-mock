@@ -6,6 +6,13 @@ var MOCK_JS_FILE = './_mockserver.js';
 var MOCK_CONFIG_FILE = './_mockserver.json';
 var mockConfigFileWatcher;
 
+var CORS_HEADER = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type',
+    'Access-Control-Allow-Credentials': 'true'
+};
+
 function getMockConfig(mockConfigFile) {
     // 不使用 require('./mock-api.json') 因为他会缓存文件的内容, 并不是每次都重新读取
     var mockConfigContent = fs.readFileSync(mockConfigFile, {encoding: 'utf-8'});
@@ -31,12 +38,7 @@ function generateRouteConfig(mockConfig) {
 
                     // enable CORS
                     // https://github.com/expressjs/cors
-                    response.set({
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-                        'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type',
-                        'Access-Control-Allow-Credentials': 'true'
-                    });
+                    response.set(CORS_HEADER);
 
                     // 直接使用 JSONP 方式, 没有 JSONP 参数时生成 JSON, 有 JSONP 参数则生成 JSONP
                     // 例如: http://a.com/a => 接口输出 JSON
@@ -122,10 +124,14 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
 
     // 列出所有的 mock API 作为一个接口文档
     routeConfig['GET /_apidoc'] = function(request, response, next) {
+        // _apidoc 也使用 CORS 方式来提供, 这样更加便于自定义 _apidoc 的 UI
+        // 这样你可以将 _apidoc 也作为一个 API, 完全可以自己写一套 UI 来获取解析 _apidoc 提供的 JSON 数据
+        response.set(CORS_HEADER);
+
         if (renderApiDoc) {
             response.send(renderApiDoc(groupMockConfig));
         } else {
-            response.send(groupMockConfig);
+            response.jsonp(groupMockConfig);
         }
     };
 
