@@ -124,8 +124,9 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
 
     // 列出所有的 mock API 作为一个接口文档
     routeConfig['GET /_apidoc'] = function(request, response, next) {
-        // _apidoc 也使用 CORS 方式来提供, 这样更加便于自定义 _apidoc 的 UI
-        // 这样你可以将 _apidoc 也作为一个 API, 完全可以自己写一套 UI 来获取解析 _apidoc 提供的 JSON 数据
+        // /_apidoc 也做为一个接口来提供(使用 CORS 方式), 这样更加便于自定义 _apidoc 的 UI.
+        // 完全支持自己写一套 UI 来获取解析 /_apidoc 提供的 JSON 数据来展现接口文档
+        // 提供了默认的 example/_apidoc.html 做为新的接口文档
         response.set(CORS_HEADER);
 
         if (renderApiDoc) {

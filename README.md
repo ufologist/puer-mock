@@ -1,6 +1,6 @@
 # puer-mock
 
-[![NPM version][npm-image]][npm-url] [![licese-image][licese-image]][licese-url] [![changelog][changelog-image]][changelog-url]
+[![NPM version][npm-image]][npm-url] [![changelog][changelog-image]][changelog-url] [![licese-image][licese-image]][licese-url]
 
 [npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/puer-mock
@@ -101,7 +101,7 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 ![puer-mock-example](https://ufologist.github.io/puer-mock/puer-mock-example.png?v1)
 
 ### 查看所有的 API 接口文档
-![puer-mock-api-doc](https://ufologist.github.io/puer-mock/puer-mock-api-doc.png?v1)
+![puer-mock-api-doc-html](https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png)
 
 ## one more thing
 
