@@ -118,6 +118,7 @@
                         "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
                         "isVip": "@boolean",
                         "date": "@now",
+                        "gender": "@pick(['male', 'female'])", // 随机取一个
                         "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
                     }]
                 }
