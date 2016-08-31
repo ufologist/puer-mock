@@ -1,11 +1,11 @@
 # puer-mock
 
-[![NPM version][npm-image]][npm-url] [![changelog][changelog-image]][changelog-url] [![licese-image][licese-image]][licese-url]
+[![NPM version][npm-image]][npm-url] [![changelog][changelog-image]][changelog-url] [![license][license-image]][license-url]
 
 [npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/puer-mock
-[licese-image]: https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square
-[licese-url]: https://github.com/ufologist/puer-mock/blob/master/LICENSE
+[license-image]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square
+[license-url]: https://github.com/ufologist/puer-mock/blob/master/LICENSE
 [changelog-image]: https://img.shields.io/badge/CHANGE-LOG-blue.svg?style=flat-square
 [changelog-url]: https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md
 
