@@ -1,11 +1,13 @@
 # puer-mock
 
-[![NPM version][npm-image]][npm-url]
+[![NPM version][npm-image]][npm-url] [![licese-image][licese-image]][licese-url] [![changelog][changelog-image]][changelog-url]
 
 [npm-image]: https://img.shields.io/npm/v/puer-mock.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/puer-mock
-[CHANGELOG]: https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md
-[License]: https://github.com/ufologist/puer-mock/blob/master/LICENSE
+[licese-image]: https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square
+[licese-url]: https://github.com/ufologist/puer-mock/blob/master/LICENSE
+[changelog-image]: https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square
+[changelog-url]: https://github.com/ufologist/puer-mock/blob/master/CHANGELOG.md
 
 [Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A configurable mock server with configurable mock(random) data.
 
@@ -36,7 +38,7 @@ npm install puer-mock
 4. view mock api
   * open `http://localhost:8000/api/users` view mock api return mock data
   * open `http://localhost:8000/api/users?callback=test` view mock api return mock data by JSONP
-  * open `http://localhost:8000/_apidoc` view built-in all mock api doc
+  * open `http://localhost:8000/_apidoc.html` view built-in all mock api doc
 5. define your mock api in `_mockserver.json`
 6. view your mock api(Yes! it with immediate effect)
 
@@ -64,15 +66,18 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 
 ## customize
 
-* You may customize `/_apidoc` route service a more graceful doc.
+* You may customize mock api doc
+  * You may customize `/_apidoc` route direct service a more graceful doc
 
-  ```javascript
-  // _mockserver.js
-  module.exports = require('puer-mock')(null, null, function(mockConfig) {
-      // 任你自由发挥
-      return '<pre>' + JSON.stringify(mockConfig, null, 4) + '</pre>';
-  });
-  ```
+    ```javascript
+    // _mockserver.js
+    module.exports = require('puer-mock')(null, null, function(mockConfig) {
+        // 任你自由发挥
+        return '<pre>' + JSON.stringify(mockConfig, null, 4) + '</pre>';
+    });
+    ```
+
+  * You may customize `/_apidoc.html` which get mock api JSON from `/_apidoc`, you may totally implement it by yourself
 
 * Play it fun with your imagination.
 
@@ -104,7 +109,5 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 * 前端/APP端
 * 任何与后端接口打交道的人
 * [为什么你需要一个 mock server](https://github.com/ufologist/puer-mock/blob/master/why-your-need-a-mock-server.md)
-* [CHANGELOG][CHANGELOG]
-* License: [MIT][License]
 
 感谢 puer 提供了如此强大的 mock 机制, 感谢 Mock.js 带来的假数据, 我才有幸做了这么一个扩展工具.
