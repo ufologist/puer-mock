@@ -26,6 +26,8 @@ Please install [puer](https://github.com/leeluolee/puer) first.
 
 > Puer - more than a live-reload server , built for efficient frontend development
 
+And then install `puer-mock` package.
+
 ```
 npm install puer-mock
 ```
