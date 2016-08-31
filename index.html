@@ -57,8 +57,15 @@
 <li>copy <code>node_modules/puer-mock/example</code> files to your project root directory</li>
 <li>cd <code>your project root</code>
 </li>
-<li><code>puer -a _mockserver.js</code></li>
-<li>view mock api
+<li>
+<p><code>puer -a _mockserver.js</code></p>
+
+<p>You may define a npm script in <code>package.json</code>, than use <code>npm run dev</code> next time. </p>
+
+<div class="highlight highlight-source-json"><pre><span class="pl-s"><span class="pl-pds">"</span>dev<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>puer -a _mockserver.js<span class="pl-pds">"</span></span></pre></div>
+</li>
+<li>
+<p>view mock api</p>
 
 <ul>
 <li>open <code>http://localhost:8000/api/users</code> view mock api return mock data</li>
