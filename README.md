@@ -36,7 +36,7 @@ npm install puer-mock
 2. cd `your project root`
 3. `puer -a _mockserver.js`
 
-   You may define a npm script in `package.json`, than use `npm run dev` next time. 
+   You may define a npm script in `package.json`, then use `npm run dev` next time. 
 
    ```json
    "dev": "puer -a _mockserver.js"
