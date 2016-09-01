@@ -26,6 +26,10 @@ Please install [puer](https://github.com/leeluolee/puer) first.
 
 > Puer - more than a live-reload server , built for efficient frontend development
 
+```
+npm install puer -g
+```
+
 And then install `puer-mock` package.
 
 ```
