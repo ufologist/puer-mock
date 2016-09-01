@@ -30,16 +30,24 @@ Please install [puer](https://github.com/leeluolee/puer) first.
 npm install puer -g
 ```
 
-And then install `puer-mock` package.
+And then install `puer-mock` package in your project root directory.
 
 ```
+cd yourprojectdir
 npm install puer-mock
+```
+
+If your project has a `package.json` file, suggest save `puer-mock` to `devDependencies`.
+
+```
+cd yourprojectrootdir
+npm install puer-mock --save-dev
 ```
 
 ## usage
 
 1. copy `node_modules/puer-mock/example` files to your project root directory
-2. cd `your project root`
+2. cd `yourprojectrootdir`
 3. `puer -a _mockserver.js`
 
    You may define a npm script in `package.json`, then use `npm run dev` next time. 
