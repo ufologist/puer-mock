@@ -190,6 +190,10 @@ puer-mock 具有以下特点
 
   > Api管理工具，在线调试，自动生成APi文档
 
+* [SosoApi](http://www.sosoapi.com/)
+
+  > 专注于API接口文档管理及线上线下测试的API服务平台。生成基于swagger ui 文档格式的json，既可在线进行测试也可下载相关的json部署到自己的服务器上，既方便又快捷。
+
 * [EasyAPI](http://www.easyapi.com/)
 
   > 一个为您提供API管理、API测试、API监控、API文档的综合性API服务平台
@@ -197,10 +201,6 @@ puer-mock 具有以下特点
 * [CrapApi](https://github.com/EhsanTang/CrapApi)
 
   > 应用接口管理系统
-
-* [SosoApi](http://www.sosoapi.com/)
-
-  > 专注于API接口文档管理及线上线下测试的API服务平台。生成基于swagger ui 文档格式的json，既可在线进行测试也可下载相关的json部署到自己的服务器上，既方便又快捷。
 
 * [FMS](https://github.com/mobejs/mobe)
 
