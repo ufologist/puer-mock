@@ -115,12 +115,12 @@ $.ajax({
 }
 ```
 
-然后调用这个接口查看结果
+然后就可以调用这个接口查看结果了
 
 ![puer-mock-example](https://ufologist.github.io/puer-mock/puer-mock-example.png)
 
 
-puer-mock 还提供了内置的 API doc, 可以看到你定义的所有 API
+puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到你定义的所有接口, 非常实用
 
 ![puer-mock-api-doc-html](https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png?v1)
 
@@ -129,7 +129,7 @@ puer-mock 具有以下特点
 * 配置接口及时生效, 修改即用
 * 支持 JSONP 的方式调用接口
 * 支持 CORS 的方式跨域调用
-* 帮你输出一份接口文档, 方便在开发过程中沟通交流
+* 帮你输出一份在线的接口文档, 方便在开发过程中随时沟通交流
 
 **当然 [puer-mock](https://github.com/ufologist/puer-mock) 还不只有这些功能, 让你一秒钟就能拥有一个强大的 mock server, 所以请不要再自己手工做假数据了, 赶快尝试一下让你的工作效率翻番吧!**
 
