@@ -122,7 +122,7 @@ $.ajax({
 
 puer-mock 还提供了内置的 API doc, 可以看到你定义的所有 API
 
-![puer-mock-api-doc](https://ufologist.github.io/puer-mock/puer-mock-api-doc.png?v1)
+![puer-mock-api-doc-html](https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png?v1)
 
 puer-mock 具有以下特点
 * 简单配置即可定义 mock 接口, 不需要你写代码
@@ -162,14 +162,6 @@ puer-mock 具有以下特点
 
 以下是目前的一些实现方案, 可以作为接口管理平台的技术选型.
 
-* [RAP](https://github.com/thx/RAP)
-
-  > RAP通过GUI工具帮助WEB工程师更高效的管理接口文档，同时通过分析接口结构自动生成Mock数据、校验真实接口的正确性，使接口文档成为开发流程中的强依赖。有了结构化的API数据，RAP可以做的更多，而我们可以避免更多重复劳动。
-
-* [AMP](https://github.com/gomeplusFED/AMP)
-
-  > Api manage platform
-
 * [Creating Help Pages for ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages)
 
   > When you create a web API, it is often useful to create a help page, so that other developers will know how to call your API. You could create all of the documentation manually, but it is better to autogenerate as much as possible. ASP.NET Web API provides a library for auto-generating help pages at run time. [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle) that uses ApiExplorer to generate [Swagger](http://swagger.io/) Docs.
@@ -178,21 +170,29 @@ puer-mock 具有以下特点
 
   > apiDoc creates a documentation from API descriptions in your source code.
 
-* [EasyPM](https://easypm.cn/)
+* [RAP](https://github.com/thx/RAP)
 
-  > RESTful API 管理: 帮助采用RESTful架构的团队更方便地管理API，并且支持版本管理，也可以一键生成API文档
-
-* [EasyAPI](http://www.easyapi.com/)
-
-  > 一个为您提供API管理、API测试、API监控、API文档的综合性API服务平台
+  > RAP通过GUI工具帮助WEB工程师更高效的管理接口文档，同时通过分析接口结构自动生成Mock数据、校验真实接口的正确性，使接口文档成为开发流程中的强依赖。有了结构化的API数据，RAP可以做的更多，而我们可以避免更多重复劳动。
 
 * [小幺鸡](http://git.oschina.net/zhoujingjie/apiManager)
 
   > [小幺鸡](http://www.xiaoyaoji.com.cn/index.html)简单好用的在线接口管理系统, 和 RAP 类似
 
+* [AMP](https://github.com/gomeplusFED/AMP)
+
+  > Api manage platform
+
+* [EasyPM](https://easypm.cn/)
+
+  > RESTful API 管理: 帮助采用RESTful架构的团队更方便地管理API，并且支持版本管理，也可以一键生成API文档
+
 * [Apizza](http://apizza.cc/)
 
   > Api管理工具，在线调试，自动生成APi文档
+
+* [EasyAPI](http://www.easyapi.com/)
+
+  > 一个为您提供API管理、API测试、API监控、API文档的综合性API服务平台
 
 * [CrapApi](https://github.com/EhsanTang/CrapApi)
 
