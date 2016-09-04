@@ -182,6 +182,12 @@ puer-mock 具有以下特点
 
   > Api manage platform
 
+* [NEI 接口管理平台](http://nei.netease.com/ "Netease Easy Interface")
+
+  > NEI 接口管理平台不仅可以定义接口, 还可以测试接口, 还可以管理数据模型、页面模板、规则函数, 定义工程规范, 比如 Web 规范、Android 规范、iOS 规范、测试规范等, 功能强大而完善.
+  >
+  > [感谢 @int64ago 的分享](https://www.v2ex.com/t/303650#reply7)
+
 * [EasyPM](https://easypm.cn/)
 
   > RESTful API 管理: 帮助采用RESTful架构的团队更方便地管理API，并且支持版本管理，也可以一键生成API文档
