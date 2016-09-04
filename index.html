@@ -47,9 +47,19 @@
 <p>Puer - more than a live-reload server , built for efficient frontend development</p>
 </blockquote>
 
-<p>And then install <code>puer-mock</code> package.</p>
+<pre><code>npm install puer -g
+</code></pre>
 
-<pre><code>npm install puer-mock
+<p>And then install <code>puer-mock</code> package in your project root directory.</p>
+
+<pre><code>cd yourprojectdir
+npm install puer-mock
+</code></pre>
+
+<p>If your project has a <code>package.json</code> file, suggest save <code>puer-mock</code> to <code>devDependencies</code>.</p>
+
+<pre><code>cd yourprojectrootdir
+npm install puer-mock --save-dev
 </code></pre>
 
 <h2>
@@ -57,7 +67,7 @@
 
 <ol>
 <li>copy <code>node_modules/puer-mock/example</code> files to your project root directory</li>
-<li>cd <code>your project root</code>
+<li>cd <code>yourprojectrootdir</code>
 </li>
 <li>
 <p><code>puer -a _mockserver.js</code></p>
