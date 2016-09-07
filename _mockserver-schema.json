@@ -1,0 +1,92 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "JSON schema for puer-mock _mockserver.json config",
+    "type": "object",
+    "properties": {
+        "api": {
+            "type": "object",
+            "title": "接口列表",
+            "patternProperties": {
+                "^(GET|POST|PUT|DELETE)\\s+/\\S+$": {
+                    "type": "object",
+                    "title": "一个接口, 例如: GET /api/user",
+                    "description": "包含 HTTP 动词 + 空格 + 路由",
+                    "default": "GET /api/user",
+                    "properties": {
+                        "request": {
+                            "type": "object",
+                            "title": "接口的输入参数",
+                            "properties": {
+                                "querystring": {
+                                    "type": "object",
+                                    "title": "在 URL querystring 中放置参数数据"
+                                },
+                                "header": {
+                                    "type": "object",
+                                    "title": "定义 HTTP header"
+                                },
+                                "body": {
+                                    "type": "object",
+                                    "title": "在 HTTP body 中放置参数数据"
+                                }
+                            }
+                        },
+                        "response": {
+                            "type": "object",
+                            "title": "接口的输出数据"
+                        },
+                        "disabled": {
+                            "type": "boolean",
+                            "title": "禁用一个接口"
+                        },
+                        "info": {
+                            "type": "object",
+                            "title": "接口的一些描述信息",
+                            "properties": {
+                                "summary": {
+                                    "type": "string",
+                                    "title": "接口介绍",
+                                    "default": "接口介绍"
+                                },
+                                "module": {
+                                    "type": "string",
+                                    "title": "接口分组",
+                                    "default": "接口分组"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "title": "接口描述",
+                                    "default": "接口描述"
+                                },
+                                "author": {
+                                    "type": "string",
+                                    "title": "接口作者",
+                                    "default": "接口作者"
+                                }
+                            }
+                        }
+                    },
+                    "required": ["response"]
+                }
+            },
+            "additionalProperties": false
+        },
+        "info": {
+            "type": "object",
+            "title": "项目的一些描述信息",
+            "properties": {
+                "summary": {
+                    "type": "string",
+                    "title": "项目介绍",
+                    "default": "xxx 项目接口文档"
+                },
+                "description": {
+                    "type": "string",
+                    "title": "项目描述",
+                    "default": "如此高大上的接口文档 Powered by puer-mock"
+                }
+            }
+        }
+    },
+    "required": ["api"]
+}
