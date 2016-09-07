@@ -48,8 +48,8 @@
                         },
                         "info": {
                             "type": "object",
-                            "title": "接口的一些描述信息",
-                            "description": "接口的一些描述信息",
+                            "title": "接口的介绍信息",
+                            "description": "接口的介绍信息",
                             "properties": {
                                 "summary": {
                                     "type": "string",
@@ -65,9 +65,9 @@
                                 },
                                 "description": {
                                     "type": "string",
-                                    "title": "接口描述",
-                                    "description": "接口描述",
-                                    "default": "接口描述"
+                                    "title": "接口详情",
+                                    "description": "接口详情",
+                                    "default": "接口详情"
                                 },
                                 "author": {
                                     "type": "string",
@@ -85,8 +85,8 @@
         },
         "info": {
             "type": "object",
-            "title": "项目的一些描述信息",
-            "description": "项目的一些描述信息",
+            "title": "项目的介绍信息",
+            "description": "项目的介绍信息",
             "properties": {
                 "summary": {
                     "type": "string",
@@ -96,8 +96,8 @@
                 },
                 "description": {
                     "type": "string",
-                    "title": "项目描述",
-                    "description": "项目描述",
+                    "title": "项目详情",
+                    "description": "项目详情",
                     "default": "如此高大上的接口文档 Powered by puer-mock"
                 }
             }
