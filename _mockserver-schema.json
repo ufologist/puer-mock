@@ -8,7 +8,7 @@
             "title": "接口列表",
             "description": "接口列表",
             "patternProperties": {
-                "^(GET|POST|PUT|DELETE)\\s+/\\S+$": {
+                "^(GET|POST|PUT|DELETE|PATCH|OPTIONS)\\s+/\\S+$": {
                     "type": "object",
                     "title": "定义一个接口, 例如: GET /api/user 包含 HTTP 动词 + 空格 + 路由",
                     "description": "定义一个接口, 例如: GET /api/user 包含 HTTP 动词 + 空格 + 路由",
