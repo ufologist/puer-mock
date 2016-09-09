@@ -23,6 +23,9 @@ describe('配置 response', function() {
         $.ajax({
             type: 'GET',
             url: API_ROOT + '/api/fullconfig',
+            data: {
+                querystring1: '1'
+            }
         }).then(function(result) {
             expect(result.users.length).toBeTruthy();
             done();
