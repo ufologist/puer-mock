@@ -10,8 +10,8 @@
             "patternProperties": {
                 "^(GET|POST|PUT|DELETE|PATCH|OPTIONS)\\s+/\\S+$": {
                     "type": "object",
-                    "title": "定义一个接口, 例如: GET /api/user 包含 HTTP 动词 + 空格 + 路由",
-                    "description": "定义一个接口, 例如: GET /api/user 包含 HTTP 动词 + 空格 + 路由",
+                    "title": "定义一个接口, 包含 HTTP 动词 + 空格 + 路由, 例如: GET /api/user",
+                    "description": "定义一个接口, 包含 HTTP 动词 + 空格 + 路由, 例如: GET /api/user",
                     "default": "GET /api/user",
                     "properties": {
                         "request": {
@@ -21,8 +21,8 @@
                             "properties": {
                                 "querystring": {
                                     "type": "object",
-                                    "title": "在 URL querystring 中放置参数",
-                                    "description": "在 URL querystring 中放置参数"
+                                    "title": "定义放置在 URL querystring 中的参数",
+                                    "description": "定义放置在 URL querystring 中的参数"
                                 },
                                 "header": {
                                     "type": "object",
@@ -31,20 +31,19 @@
                                 },
                                 "body": {
                                     "type": "object",
-                                    "title": "在 HTTP body 中放置参数",
-                                    "description": "在 HTTP body 中放置参数"
+                                    "title": "定义放置在 HTTP body 中的参数",
+                                    "description": "定义放置在 HTTP body 中的参数"
                                 }
                             }
                         },
                         "response": {
-                            "type": "object",
-                            "title": "接口的输出数据",
-                            "description": "接口的输出数据"
+                            "title": "接口的输出数据, 可以是任意的 JSON 数据类型(number/boolean/string/object/array/null), 但推荐返回固定结构的 object 类型的数据",
+                            "description": "接口的输出数据, 可以是任意的 JSON 数据类型(number/boolean/string/object/array/null), 但推荐返回固定结构的 object 类型的数据"
                         },
                         "disabled": {
                             "type": "boolean",
-                            "title": "禁用一个接口",
-                            "description": "禁用一个接口"
+                            "title": "是否禁用该接口",
+                            "description": "是否禁用该接口"
                         },
                         "info": {
                             "type": "object",
