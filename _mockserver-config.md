@@ -1,4 +1,4 @@
-# `_mockserver.json` 配置手册
+# _mockserver.json 配置手册
 
 `_mockserver.json` 遵循 [JSON Schema](http://json-schema.org/) 规范, 对应的 schema 文件是 [_mockserver-schema.json](https://github.com/ufologist/puer-mock/blob/master/_mockserver-schema.json)
 
