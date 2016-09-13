@@ -10,24 +10,26 @@
 
 [example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考
 
-### _mockserver.json 的各个配置项
+### 配置项简介
 
 ```javascript
 {
     "$schema": "http://rawgit.com/ufologist/puer-mock/master/_mockserver-schema.json",
 
-    // 非必要属性
+    // 项目的介绍信息(非必要属性)
     // "info": {
     //     "summary": "",
     //     "description": ""
     // },
 
+    // 接口列表
     "api": {
+        // 定义一个接口
         "GET /api/user": {
-            // 非必要属性
+            // 是否禁用该接口(非必要属性)
             // "disabled": false,
 
-            // 非必要属性
+            // 接口的介绍信息(非必要属性)
             // "info": {
             //     "summary": "",
             //     "module": "",
@@ -35,14 +37,17 @@
             //     "author": ""
             // },
 
-            // 非必要属性
+            // 接口的输入参数(非必要属性)
             // "request": {
             //     "querystring": {},
             //     "header": {},
             //     "body": {}
             // },
+
+            // 接口的输出数据
             "response": {}
         },
+        // 定义另一个接口
         "GET /api/friend": {
             "response": {}
         }
@@ -50,7 +55,7 @@
 }
 ```
 
-### _mockserver.json 完整的各个配置项
+### 各个配置项的完整说明
 
 ```javascript
 {
