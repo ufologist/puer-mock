@@ -10,7 +10,7 @@
 
 [example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考
 
-```json
+```javascript
 {
     // 指定 _mockserver.json 的 JSON Schema
     "$schema": "http://rawgit.com/ufologist/puer-mock/master/_mockserver-schema.json",
