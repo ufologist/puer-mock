@@ -8,7 +8,11 @@
 
 ## 配置项
 
-[example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考
+[example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考, 并配套有对应的[单元测试](https://github.com/ufologist/puer-mock/tree/master/test).
+
+PS: 运行单元测试需要先开启 puer-mock(使用默认的 `example/_mockserver.json`), 并在支持跨域(例如设置 chrome 启动参数为 `--disable-web-security`)的浏览器中运行 `test/index.html` 即可, 执行结果如下图所示:
+
+![puer-mock-mockserver-test](https://ufologist.github.io/puer-mock/puer-mock-mockserver-test.png)
 
 ### 配置项简介
 
