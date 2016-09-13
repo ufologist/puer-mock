@@ -93,7 +93,17 @@ PS: 运行单元测试需要先开启 puer-mock(使用默认的 `example/_mockse
             },
 
             // 用于说明请求接口时需要传入什么参数
-            // 如果配置了必传参数, 则会校验前端调用时的输入参数是否与接口匹配
+            // 如果配置了必传参数, 则会校验前端调用时的输入参数是否与接口匹配.
+            // 如果参数匹配则返回接口的输出数据, 否则返回 400 错误, 告知验证不通过, 返回的错误信息如下所示
+            // {
+            //     "status": 400,
+            //     "statusInfo": [{
+            //         "required": true,
+            //         "type": "number",
+            //         "factValue": "a",
+            //         "querystring": "querystring1" // header/body
+            //     }]
+            // }
             // ----------
             // 前端给后端接口传递参数的方式一般有三种
             // 1. querystring 即在 URL 中添加参数
@@ -154,7 +164,8 @@ PS: 运行单元测试需要先开启 puer-mock(使用默认的 `example/_mockse
                 }
                 // 如果要在 body 中放置 raw 数据, 例如 JSON 数据,
                 // 需要先在 header 中定义 Content-Type 定义为 application/json,
-                // 再将整个数据设置在 body 上即可
+                // 再将整个数据设置在 body 中即可, 此时前端请求的 body 中必须有对应的数据,
+                // 否则会通不过请求输入参数的验证
                 // ----------
                 // 例如下面定义的参数, 调用接口时应该是这样的
                 // POST /api/user
