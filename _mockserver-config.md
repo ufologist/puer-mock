@@ -8,7 +8,49 @@
 
 ## 配置项
 
-[example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考, 下面是完整的配置说明
+[example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考
+
+### _mockserver.json 的各个配置项
+
+```javascript
+{
+    "$schema": "http://rawgit.com/ufologist/puer-mock/master/_mockserver-schema.json",
+
+    // 非必要属性
+    // "info": {
+    //     "summary": "",
+    //     "description": ""
+    // },
+
+    "api": {
+        "GET /api/user": {
+            // 非必要属性
+            // "disabled": false,
+
+            // 非必要属性
+            // "info": {
+            //     "summary": "",
+            //     "module": "",
+            //     "description": "",
+            //     "author": ""
+            // },
+
+            // 非必要属性
+            // "request": {
+            //     "querystring": {},
+            //     "header": {},
+            //     "body": {}
+            // },
+            "response": {}
+        },
+        "GET /api/friend": {
+            "response": {}
+        }
+    }
+}
+```
+
+### _mockserver.json 完整的各个配置项
 
 ```javascript
 {
