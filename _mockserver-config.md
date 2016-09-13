@@ -2,13 +2,13 @@
 
 `_mockserver.json` 遵循 [JSON Schema](http://json-schema.org/) 规范, 对应的 schema 文件是 [_mockserver-schema.json](https://github.com/ufologist/puer-mock/blob/master/_mockserver-schema.json)
 
-推荐使用支持 [JSON Schema](http://json-schema.org/) 的编辑器来协助编写配置, 例如 [Visual Stuido Code](https://code.visualstudio.com/), 可以帮助你校验 `_mockserver.json` 的格式是否正确, 还能给予一些提示信息.
+推荐使用支持 [JSON Schema](http://json-schema.org/) 的编辑器来协助编写配置, 例如 [Visual Stuido Code](https://code.visualstudio.com/Docs/languages/json), 可以帮助你校验 `_mockserver.json` 的格式是否正确, 还能给予一些提示信息.
 
 ![vsc-mockserver-json](https://ufologist.github.io/puer-mock/vsc-mockserver-json.png)
 
 ## 配置项
 
-[example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考
+[example/_mockserver.json](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json) 中提供了很多配置示例可供参考, 下面是完整的配置说明
 
 ```javascript
 {
@@ -26,7 +26,7 @@
         // 定义一个接口, 包含 HTTP 动词 + 空格 + 路由
         "GET /api/user": {
             // 是否禁用该接口, 一般和 puer 的 proxy 方式一起使用
-            //
+            // ----------
             // 例如我们可以通过 puer 代理的方式来代理后端的真实接口
             // puer -a _mockserver.js -t http://localhost:8001
             //
@@ -43,7 +43,7 @@
 
             // 用于说明请求接口时需要传入什么参数
             // 如果配置了必传参数, 则会校验前端调用时的输入参数是否与接口匹配
-            // 
+            // ----------
             // 前端给后端接口传递参数的方式一般有三种
             // 1. querystring 即在 URL 中添加参数
             // 2. body 即在 HTTP REQUEST BODY 中添加参数
@@ -61,7 +61,7 @@
             // 或者用于在 body 中传递 JSON 数据时使用
             "request": {
                 // 通过 URL querystring 定义 key-value 型的参数数据
-                // 
+                // ----------
                 // 例如下面定义的参数, 调用接口时应该是这样的
                 // GET /api/user?querystring1=1&querystring2=1&querystring3=true&querystring4%5Bp%5D=1
                 "querystring": {
@@ -87,7 +87,7 @@
                     "X-Custom-Header": "header-value"
                 },
                 // 可以在 body 中放置参数数据, 当为 GET 请求时, 不可以设置 body
-                //
+                // ----------
                 // 当 header 中设置 "Content-Type": "application/x-www-form-urlencoded" 时
                 // 例如下面定义的参数, 调用接口时应该是这样的
                 // POST /api/user
@@ -104,7 +104,7 @@
                 // 如果要在 body 中放置 raw 数据, 例如 JSON 数据,
                 // 需要先在 header 中定义 Content-Type 定义为 application/json,
                 // 再将整个数据设置在 body 上即可
-                // 
+                // ----------
                 // 例如下面定义的参数, 调用接口时应该是这样的
                 // POST /api/user
                 // Content-Type: application/json
@@ -124,7 +124,7 @@
             // 接口的输出数据, 可以是任意的 JSON 数据类型(number/boolean/string/object/array/null),
             // 但推荐返回固定结构的 object 类型的数据
             "response": {
-                // 接口返回的数据格式可以参考 - 前后端接口规范
+                // 接口返回的固定结构可以参考 - 前后端接口规范
                 // https://github.com/f2e-journey/treasure/blob/master/api.md
                 "status": 0,
                 "statusInfo": {
