@@ -18,13 +18,16 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
     var _mockJsFile = mockJsFile || MOCK_JS_FILE;
     var _mockConfigFile = mockConfigFile || MOCK_CONFIG_FILE;
 
-    // 监听 mockJsFile 是否改动了, 改动后修改 mockJsFile 的修改时间,
+    // 监听接口配置文件(mockConfigFile)是否改动了, 改动后修改 mock 启动文件(mockJsFile)的修改时间,
     // 以激发 puer 本身的监听, 让其重新加载 mockJsFile, 则会重新加载 mockConfigFile,
     // 达到刷新 mockConfigFile 的目的
+    //
+    // XXX 如果在运行期间先修改 mockJsFile 再修改 mockConfigFile, 会造成无限循环重复监听(控制台被刷屏),
+    // 因此最好不要在运行期间修改 mockJsFile()
     // 
     // 我们这里先监听文件再读取 JSON, 以防止出现 JSON 读取异常(例如格式错误)造成程序不重新加载的问题
     mockConfigFileWatcher = util.watchFile(_mockConfigFile, function() {
-        mockConfigFileWatcher && mockConfigFileWatcher.close();
+        util.unwatchFile(mockConfigFileWatcher, _mockConfigFile);
         fs.utimes(_mockJsFile, new Date(), new Date());
     });
 

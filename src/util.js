@@ -50,6 +50,17 @@ function watchFile(filename, callback) {
 }
 
 /**
+ * 根据情况 unwatchFile
+ */
+function unwatchFile(watcher, filename) {
+    if (watcher) {
+        watcher.close && watcher.close();
+    } else {
+        fs.unwatchFile(filename);
+    }
+}
+
+/**
  * 将 mock 配置按照 module 进行分组
  */
 function groupApiByModuleName(mockConfig) {
@@ -80,5 +91,6 @@ module.exports = {
     CORS_HEADER: CORS_HEADER,
     isEmptyObject: isEmptyObject,
     watchFile: watchFile,
+    unwatchFile: unwatchFile,
     groupApiByModuleName: groupApiByModuleName
 };
