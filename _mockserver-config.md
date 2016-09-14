@@ -201,14 +201,21 @@ PS: 运行单元测试需要先开启 puer-mock(使用默认的 `example/_mockse
                         "guid": "@guid",
                         "index": "@increment",
                         "name": "@cname",
-                        "province": "@province",
+                        // 占位符是可以组合使用的, 因此可以更灵活的使用
+                        // XXX 必须使用 province1 这样的属性名, 不要直接叫做 province,
+                        // 否则会造成冲突, 出现 Maximum call stack size exceeded 异常
+                        // 以此类推, 只要使用了组合的占位符, 然后再设置属性名与其中的某个占位符的名字相同, 就会出现这个问题
+                        // PS: 使用单个占位符的时候不会出现这种问题
+                        // https://github.com/nuysoft/Mock/issues/137
+                        "address": "@province@city@county",
                         "email": "@email",
                         "desc": "@cparagraph",
                         "avatar": "@image('200x100', '#50B347', '#FFF', 'Mock.js')",
                         "age": "@integer(10, 50)",
                         "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
                         "isVip": "@boolean",
-                        "date": "@now",
+                        "now": "@now('yyyy-MM-dd HH:mm:ss')",
+                        "datetime": "@datetime('yyyy-MM-dd HH:mm:ss')",
                         "url": "@url('http')",
                         "gender": "@pick(['male', 'female'])", // 随机取一个
                         "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
