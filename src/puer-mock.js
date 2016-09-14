@@ -30,7 +30,7 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
     var routeConfig = rc.generateRouteConfig(mockConfig);
     var groupMockConfig = util.groupApiByModuleName(mockConfig);
 
-    appendApidocRoute(routeConfig, groupMockConfig);
+    appendApidocRoute(routeConfig, renderApiDoc, groupMockConfig);
 
     return routeConfig;
 }
@@ -38,7 +38,7 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
 /**
  * 列出所有的 mock API 作为一个接口文档
  */
-function appendApidocRoute(routeConfig, groupMockConfig) {
+function appendApidocRoute(routeConfig, renderApiDoc, groupMockConfig) {
     routeConfig['GET /_apidoc'] = function(request, response, next) {
         // /_apidoc 也做为一个接口来提供(使用 CORS 方式), 这样更加便于自定义 _apidoc 的 UI.
         // 完全支持自己写一套 UI 来获取解析 /_apidoc 提供的 JSON 数据来展现接口文档
