@@ -52,11 +52,11 @@ function sendMockData(request, response, mockResponse) {
     // https://github.com/expressjs/cors
     // 由于跨域的 PUT, DELETE 请求需要回应一个 OPTIONS 做 preflight 请求,
     // 但是没有配置这样的路由, 因此没有办法做跨域的 PUT, DELETE 请求
-    response.set(util.CORS_HEADER);
-    // 直接使用 JSONP 方式, 没有 JSONP 参数时生成 JSON, 有 JSONP 参数则生成 JSONP
-    // 例如: http://a.com/a => 接口输出 JSON
-    //       http://a.com/a?callback=a => 接口输出 JSONP
-    response.jsonp(mockResponseData);
+    response.set(util.CORS_HEADER)
+            // 直接使用 JSONP 方式, 没有 JSONP 参数时生成 JSON, 有 JSONP 参数则生成 JSONP
+            // 例如: http://a.com/a => 接口输出 JSON
+            //       http://a.com/a?callback=a => 接口输出 JSONP
+            .jsonp(mockResponseData);
 }
 
 module.exports = {

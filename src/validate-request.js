@@ -23,7 +23,7 @@ function validateRequest(request, response, mockRequest, onValid) {
                     .jsonp({
                         status: 400,
                         statusInfo: errors
-                    }).end();
+                    });
         } else { // 验证通过时正常返回接口数据
             onValid();
         }
