@@ -58,7 +58,7 @@ npm install puer-mock --save-dev
 
 4. view mock api
   * open `http://localhost:8000/api/users` view mock api return mock data
-  * open `http://localhost:8000/api/users?callback=test` view mock api return mock data by JSONP
+  * open `http://localhost:8000/api/configdemo-response/mock?callback=test` view mock api return mock data by JSONP
   * open `http://localhost:8000/_apidoc.html` view built-in all mock api doc
 5. define your mock api in `_mockserver.json`
 6. view your mock api(Yes! it with immediate effect)
@@ -76,6 +76,8 @@ The minimal `_mockserver.json`
     }
 }
 ```
+
+Please view [_mockserver-config.md](https://github.com/ufologist/puer-mock/blob/master/config.md) for more detail config doc.
 
 You can see more settings to config mock server in [`_mockserver.json`](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json).
 

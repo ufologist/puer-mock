@@ -1,8 +1,8 @@
 {
   "name": "puer-mock",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Puer + Mock.js = A configurable mock server with configurable mock(random) data.",
-  "main": "index.js",
+  "main": "src/puer-mock.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

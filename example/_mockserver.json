@@ -10,33 +10,50 @@
 //     }
 // }
 {
-    // 项目的一些描述信息
+    // Visual Stuido Code 支持通过 JSON schema 来验证 JSON 文件的格式并给予提示信息
+    // To understand the structure of JSON files, we use JSON schemas
+    // https://code.visualstudio.com/Docs/languages/json#_json-schemas-settings
+    "$schema": "http://rawgit.com/ufologist/puer-mock/master/_mockserver-schema.json",
+
+    // 项目的介绍信息
     "info": {
         "summary": "xxx 项目接口文档",
         "description": "如此高大上的接口文档 Powered by puer-mock"
     },
 
+    // 接口列表
     "api": {
-        "GET /api/users": {
-            // 我们可以通过代理的方式来代理后端的真实接口
+        // fullconfig 做为接口定义的介绍, 方便使用的人可以在这里看怎么定义接口
+        "GET /api/fullconfig": {
+            // 是否禁用该接口, 一般和 puer 的 proxy 方式一起使用
+            // ----------
+            // 例如我们可以通过 puer 代理的方式来代理后端的真实接口
             // puer -a _mockserver.js -t http://localhost:8001
             //
-            // 这样当后端接口开发完成以后, 设置 disabled 取消该 mock 接口,
-            // 就可以立马切换到后端的真实接口, 前端完全不用动
-            // 
+            // 这样当后端接口开发完成以后, 就可以立马切换到后端的真实接口, 前端完全不用动
             // "disabled": true,
 
-            // 接口的一些描述信息
+            // 接口的介绍信息
             "info": {
-                "summary": "获取所有用户",
-                "module": "用户", // 用于对 API 进行分组
-                "description": "获取所有用户的信息",
+                "summary": "接口介绍",
+                "module": "接口分组", // 用于对 API 进行分组
+                "description": "接口详情",
                 "author": "Sun"
             },
 
-            // TODO 作为保留字段, 用于校验前端的输入参数是否与接口匹配
-            // 目前只用作说明接口需要什么参数, 没有实质的验证逻辑
-            // 
+            // 用于说明请求接口时需要传入什么参数
+            // 如果配置了必传参数, 则会校验前端调用时的输入参数是否与接口匹配.
+            // 如果参数匹配则返回接口的输出数据, 否则返回 400 错误, 告知验证不通过, 返回的错误信息如下所示
+            // {
+            //     "status": 400,
+            //     "statusInfo": [{
+            //         "required": true,
+            //         "type": "number",
+            //         "factValue": "a",
+            //         "querystring": "querystring1" // header/body
+            //     }]
+            // }
+            // ----------
             // 前端给后端接口传递参数的方式一般有三种
             // 参考 Swagger RESTful API Documentation Specification 2.0 Parameter Object
             // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#parameter-object
@@ -46,46 +63,66 @@
             // 
             // 这几种方式基本上都在传递 key-value 型的参数数据
             // 如果要传递复杂的 raw 型数据(例如整个 JSON), 则需要通过设置 Content-Type HEADER 来说明,
-            // 在将整个数据体放置在 body 中即可
+            // 再将整个数据体放置在 body 中即可
             //
             // 可以在参数数据中指定数据类型,
-            // 目前支持的数据类型有: number, string, boolean, object
+            // 目前支持的数据类型有: string, number, boolean, object
             // 复杂数据类型 object, 一般用于复杂的 key-value 型数据,
             // 例如: GET /shoes?shoe[color]=blue&shoe[type]=converse
-            // request.query.shoe.color
+            // 取出来就是(以 Express 为例) request.query.shoe.color
             // 或者用于在 body 中传递 JSON 数据时使用
             "request": {
                 // 通过 URL querystring 定义 key-value 型的参数数据
+                // ----------
+                // 例如下面定义的参数, 调用接口时应该是这样的
+                // GET /api/fullconfig?querystring1=1&querystring2=1&querystring3=true&querystring4%5Bp%5D=1
                 "querystring": {
-                    "querystring1": 1,       // number, 整数或者小数
-                    "querystring2": "1",     // string
+                    // 在参数名前面添加一个星号(*)标识出该参数为必传参数
+                    // 这种形式的灵感来自前端表单的必填项
+                    "*querystring1": "1",     // string
+                    "querystring2": 1,       // number, 整数或者小数
                     "querystring3": true,    // boolean
                     "querystring4": {"p": 1} // object
                 },
                 // 可以使用 header 来传递参数, 或者通过 Content-Type 定义 body 的数据类型
                 "header": {
-                    // 一般的 Content-Type 有表单编码, POST 请求时默认是这个类型
+                    // 一般的 Content-Type 有表单编码, HTML form POST 请求时默认是这个类型
                     // "Content-Type": "application/x-www-form-urlencoded"
 
-                    // 或者直接使用 body 来传递 raw 数据, 例如 JSON 数据, 或者 XML 之类
+                    // 或者直接使用 body 来传递 raw 数据, 例如 JSON 数据, 或者 XML 之类, 要指明数据类型
                     // "Content-Type": "application/json"
 
                     // 或者比较少用的还有整个表单数据, 则设置为
                     // "Content-Type": "multipart/form-data"
 
                     // 或者使用自定义 header 来传递数据
-                    // "X-Custom-Header": "header-value"
+                    "X-Custom-Header": "header-value"
                 },
                 // 可以在 body 中放置参数数据, 当为 GET 请求时, 不可以设置 body
+                // ----------
+                // 当 header 中设置 "Content-Type": "application/x-www-form-urlencoded" 时
+                // 例如下面定义的参数, 调用接口时应该是这样的
+                // POST /api/fullconfig
+                // Content-Type: application/x-www-form-urlencoded
+                //
+                // formurlencoded1=1&formurlencoded2=1&formurlencoded3=true&formurlencoded4%5Bp%5D=1
                 "body": {
                     // 当为 POST 请求时, 将表单编码的 key-value 参数数据放在 body 中
-                    "formurlencoded1": 1,
-                    "formurlencoded2": "1",
+                    "formurlencoded1": "1",
+                    "formurlencoded2": 1,
                     "formurlencoded3": true,
                     "formurlencoded4": {"p": 1}
                 }
                 // 如果要在 body 中放置 raw 数据, 例如 JSON 数据,
-                // 需要先将 Content-Type 定义为 application/json, 再将整个数据设置在 body 上即可
+                // 需要先在 header 中定义 Content-Type 定义为 application/json,
+                // 再将整个数据设置在 body 中即可, 此时前端请求的 body 中必须有对应的数据,
+                // 否则会通不过请求输入参数的验证
+                // ----------
+                // 例如下面定义的参数, 调用接口时应该是这样的
+                // POST /api/fullconfig
+                // Content-Type: application/json
+                //
+                // {"name":{"n1":"1"},"list":[{"p1":1,"p2":2}]}
                 // "body": { // object 数据类型
                 //     "name": {
                 //         "n1": "1"
@@ -97,78 +134,664 @@
                 // }
             },
 
-            // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
-            // http://mockjs.com/examples.html
+            // 接口的输出数据, 可以是任意的 JSON 数据类型(number/boolean/string/object/array/null),
+            // 但推荐返回固定结构的 object 类型的数据
+            // ----------
+            // XXX 一个完整的 response 应该是可以包含 header 信息的
+            // 因此完整的 response 应该是
+            // "response" {
+            //      "header": {},
+            //      "body": {} 
+            // }
+            // 一时大意忘记了, 幸好在返回中控制 header 很少用
+            // 如果确实要用, 可以在 _mockserver.js 中单独控制下某个接口
             "response": {
-                // 接口规范可以参考 - 前端通用接口规范
+                // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
+                // http://mockjs.com/examples.html
+                "users|10-30": [{
+                    "id": "@id"
+                }]
+            }
+        },
+
+        // 演示如何配置接口
+        // 接口的输入参数(request)
+        "GET /api/configdemo/:id": {
+            "info": {
+                "summary": "配置一个 GET 接口, 以路径参数作为输入参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {
+                "route": "GET /api/configdemo/:id"
+            }
+        },
+        "GET /api/configdemo/:id/request": {
+            "info": {
+                "summary": "配置一个 GET 接口, 以路径参数作为输入参数的子级资源",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {
+                "route": "GET /api/configdemo/:id/request"
+            }
+        },
+        "GET /api/configdemo-request/querystring": {
+            "info": {
+                "summary": "配置一个 GET 接口, 以 URL 查询字符串作为输入参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {
+                "querystring": {
+                    "q1": 1
+                }
+            },
+            "response": {
+                "route": "GET /api/configdemo-request/querystring"
+            }
+        },
+        "POST /api/configdemo-request/urlencoded": {
+            "info": {
+                "summary": "配置一个 POST 接口, 以 urlencoded 作为输入参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {
+                "header": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "body": {
+                    "q1": 1
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/urlencoded"
+            }
+        },
+        "POST /api/configdemo-request/json": {
+            "info": {
+                "summary": "配置一个 POST 接口, 以 JSON 作为输入参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {
+                "header": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": 1,
+                    "name": "name"
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/json"
+            }
+        },
+        "POST /api/configdemo-request/formdata": {
+            "info": {
+                "summary": "配置一个 POST 接口, 以 multipart/form-data 作为输入参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {
+                "header": {
+                    "Content-Type": "multipart/form-data"
+                },
+                "body": {
+                    "formdata1": "1",
+                    "formdata2": 1
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/formdata"
+            }
+        },
+        "POST /api/configdemo-request/datatype": {
+            "info": {
+                "summary": "配置输入参数的数据类型",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {
+                "querystring": {
+                    "querystring1": "1",     // string
+                    "querystring2": 1,       // number, 整数或者小数
+                    "querystring3": true,    // boolean
+                    "querystring4": {"p": 1} // object
+                },
+                "header": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "body": {
+                    "formurlencoded1": "1",
+                    "formurlencoded2": 1,
+                    "formurlencoded3": true,
+                    "formurlencoded4": {"p": 1}
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/datatype"
+            }
+        },
+        "POST /api/configdemo-request/required": {
+            "info": {
+                "summary": "配置必传参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "在参数名前面添加一个星号(*)来特别标识出必传参数",
+                "author": "Sun"
+            },
+            "request": {
+                "querystring": {
+                    "*querystring1": "1",
+                    "*querystring2": 1,
+                    "*querystring3": true,
+                    "*querystring4": {"p": 1}
+                },
+                "header": {
+                    "*Content-Type": "application/x-www-form-urlencoded"
+                },
+                "body": {
+                    "*formurlencoded1": "1",
+                    "*formurlencoded2": 1,
+                    "*formurlencoded3": true,
+                    "formurlencoded4": {"p": 1} // formurlencoded4 中暂不支持 object 类型必须参数
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/required"
+            }
+        },
+        "POST /api/configdemo-request/required-formdata": {
+            "info": {
+                "summary": "配置 body formdata 必传参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "在参数名前面添加一个星号(*)来特别标识出必传参数",
+                "author": "Sun"
+            },
+            "request": {
+                "header": {
+                    "*Content-Type": "multipart/formdata"
+                },
+                "body": {
+                    "*formdata1": "1",
+                    "*formdata2": 1,
+                    "*formdata3": true
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/required-formdata"
+            }
+        },
+        "POST /api/configdemo-request/required-json": {
+            "info": {
+                "summary": "配置 body json 必传参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "在参数名前面添加一个星号(*)来特别标识出必传参数",
+                "author": "Sun"
+            },
+            "request": {
+                "header": {
+                    "*Content-Type": "application/json"
+                },
+                "body": {
+                    "field1": "1",
+                    "field2": 2
+                }
+            },
+            "response": {
+                "route": "POST /api/configdemo-request/required-json"
+            }
+        },
+        "GET /api/configdemo-request/pagination": {
+            "info": {
+                "summary": "配置分页参数",
+                "module": "接口配置示例-输入参数(request)",
+                "description": "",
+                "author": "Sun"
+            },
+            "request": {
+                "querystring": {
+                    "limit": 5, // 限制仅获取多少条数据, 一般用于获取最新数据, 不添加这个参数则表示获取一整页的数据
+                    "page": 0, // 获取第几页的数据, 从 0 开始, 一般会有一个默认值
+                    "pageSize": 10 // 每页多少数据, 一般会有一个默认值
+                }
+            },
+            "response": {
+                "data": {
+                    "pagination": { // 分页信息
+                        "total": 1024, // 总共有多少条数据
+                        "page": 0,
+                        "pageSize": 10
+                    },
+                    "foo": [{
+                        "id": 1
+                    }]
+                }
+            }
+        },
+        // 接口的输出数据(response)
+        "GET /api/configdemo-response/number": {
+            "info": {
+                "summary": "配置接口返回 number",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "返回数据可以是任意的 JSON 数据类型",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": 1
+        },
+        "GET /api/configdemo-response/boolean": {
+            "info": {
+                "summary": "配置接口返回 boolean",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "返回数据可以是任意的 JSON 数据类型",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": true
+        },
+        "GET /api/configdemo-response/string": {
+            "info": {
+                "summary": "配置接口返回 string",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "返回数据可以是任意的 JSON 数据类型",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": "a"
+        },
+        "GET /api/configdemo-response/object": {
+            "info": {
+                "summary": "配置接口返回 object",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "返回数据可以是任意的 JSON 数据类型",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {
+                "route": "GET /api/configdemo-response/object"
+            }
+        },
+        "GET /api/configdemo-response/array": {
+            "info": {
+                "summary": "配置接口返回 array",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "返回数据可以是任意的 JSON 数据类型",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": [1, true, false, "a", {"a": 1}, [1, 2], null]
+        },
+        "GET /api/configdemo-response/null": {
+            "info": {
+                "summary": "配置接口返回 null",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "返回数据可以是任意的 JSON 数据类型",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": null
+        },
+        "GET /api/configdemo-response/mock-simple": {
+            "info": {
+                "summary": "配置接口返回简单的动态假数据",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例 http://mockjs.com/examples.html",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": "@cname"
+        },
+        "GET /api/configdemo-response/mock": {
+            "info": {
+                "summary": "配置接口返回复杂的动态假数据",
+                "module": "接口配置示例-输出数据(response)",
+                "description": "通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例 http://mockjs.com/examples.html",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {
+                // 接口返回的固定结构可以参考 - 前后端接口规范
                 // https://github.com/f2e-journey/treasure/blob/master/api.md
                 "status": 0,
                 "statusInfo": {
                     "message": "ok"
                 },
                 "data": {
-                    "users|10-30": [{
+                    // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
+                    // http://mockjs.com/examples.html
+                    "foo|10-30": [{
+                        "text": "固定值", // 可以夹杂其他固定值
                         "id": "@id",
                         "guid": "@guid",
                         "index": "@increment",
                         "name": "@cname",
-                        "province": "@province",
+                        // 占位符是可以组合使用的, 因此可以更灵活的使用
+                        // XXX 必须使用 province1 这样的属性名, 不要直接叫做 province,
+                        // 否则会造成冲突, 出现 Maximum call stack size exceeded 异常
+                        // 以此类推, 只要使用了组合的占位符, 然后再设置属性名与其中的某个占位符的名字相同, 就会出现这个问题
+                        // PS: 使用单个占位符的时候不会出现这种问题
+                        // https://github.com/nuysoft/Mock/issues/137
+                        "address": "@province@city@county",
                         "email": "@email",
                         "desc": "@cparagraph",
-                        "avatar": "@image(200x100)",
+                        "avatar": "@image('200x100', '#50B347', '#FFF', 'Mock.js')",
                         "age": "@integer(10, 50)",
                         "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
                         "isVip": "@boolean",
-                        "date": "@now",
+                        "now": "@now('yyyy-MM-dd HH:mm:ss')",
+                        "datetime": "@datetime('yyyy-MM-dd HH:mm:ss')",
+                        "url": "@url('http')",
                         "gender": "@pick(['male', 'female'])", // 随机取一个
                         "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
                     }]
                 }
             }
         },
-        "GET /api/queryOrder": { // 应对不符合 REST 风格的接口, 例如: /api.php?act=queryOrder 
-            "request": {
-                "querystring": {
-                    "limit": 5, // 限制只获取多少条数据, 不添加这个参数则表示获取一整页的数据
-                    "page": 0, // 获取第几页的数据, 从 0 开始
-                    "pageSize": 10 // 每页多少数据
-                }
-            },
-            "response": {
-                "data": {
-                    "pagination": { // 分页信息
-                        "total": "@integer(1, 50)", // 总共有多少条数据
-                        "page": 0,
-                        "pageSize": 10
-                    },
-                    "order|1-10": [{
-                        "id": "@increment",
-                        "url": "@url",
-                        "time": "@time"
-                    }]
-                }
-            }
-        },
-        "GET /api/user/:id": {
+        // disabled
+        "GET /api/configdemo-disabled": {
             "disabled": true,
-
             "info": {
-                "summary": "获取单个用户",
-                "module": "", // 用于对 API 进行分组
-                "description": "获取单个用户的信息",
+                "summary": "取消某个接口的定义",
+                "module": "接口配置示例-禁用接口",
+                "description": "可以很方便的临时禁用一下接口",
                 "author": "Sun"
             },
+            "request": {},
+            "response": {
+                "route": "GET /api/configdemo-disabled"
+            }
+        },
+
+        // 演示如何配置 RESTful 接口((对资源进行 CRUD 操作, 即增删改查)
+        // 接口的定义取自 Swagger Petstore
+        "POST /api/pet": {
+            "info": {
+                "summary": "新增",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {
+                "header": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": 0,
+                    "category": {
+                        "id": 0,
+                        "name": "string"
+                    },
+                    "name": "doggie",
+                    "photoUrls": [
+                        "string"
+                    ],
+                    "tags": [{
+                        "id": 0,
+                        "name": "string"
+                    }],
+                    "status": "available"
+                }
+            },
 
             "response": {
-                "data": {
-                    "user": {
-                        "id": "@increment",
-                        "name": "@name",
-                        "title": "@title",
-                        "desc": "@paragraph",
-                        "date": "@datetime"
-                    }
+                "id": "@id",
+                "category": {
+                    "id": "@id",
+                    "name": "@title"
+                },
+                "name": "POST /api/pet",
+                "photoUrls|1-5": ["@image(200x100)"],
+                "tags|1-5": [{
+                    "id": "@id",
+                    "name": "@title"
+                }],
+                "status": "@pick(['available', 'pending', 'sold'])"
+            }
+        },
+        "DELETE /api/pet/:id": {
+            "info": {
+                "summary": "删除",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {},
+
+            "response": {
+                "route": "DELETE /api/pet/:id"
+            }
+        },
+        "POST /api/pet/:id/delete": {
+            "info": {
+                "summary": "删除 by POST",
+                "module": "接口配置示例-RESTFul",
+                "description": "有些 REST 接口可能不能完全遵循 HTTP verb",
+                "author": "Swagger"
+            },
+
+            "request": {},
+
+            "response": {
+                "route": "POST /api/pet/:id/delete"
+            }
+        },
+        "PUT /api/pet/:id": {
+            "info": {
+                "summary": "修改",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {
+                "header": {
+                    "Content-Type": "application/json"
+                },
+                "body": { // 更新时可能只更新部分字段
+                    "id": 0,
+                    "name": "doggie"
                 }
+            },
+
+            "response": {
+                "id": "@id",
+                "category": {
+                    "id": "@id",
+                    "name": "@title"
+                },
+                "name": "PUT /api/pet/:id",
+                "photoUrls|1-5": ["@image(200x100)"],
+                "tags|1-5": [{
+                    "id": "@id",
+                    "name": "@title"
+                }],
+                "status": "@pick(['available', 'pending', 'sold'])"
+            }
+        },
+        "POST /api/pet/:id/update": {
+            "info": {
+                "summary": "修改 by POST JSON",
+                "module": "接口配置示例-RESTFul",
+                "description": "有些 REST 接口可能不能完全遵循 HTTP verb",
+                "author": "Swagger"
+            },
+
+            "request": {
+                "header": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": 0,
+                    "name": "doggie"
+                }
+            },
+
+            "response": {
+                "id": "@id",
+                "category": {
+                    "id": "@id",
+                    "name": "@title"
+                },
+                "name": "POST /api/pet/:id/update",
+                "photoUrls|1-5": ["@image(200x100)"],
+                "tags|1-5": [{
+                    "id": "@id",
+                    "name": "@title"
+                }],
+                "status": "@pick(['available', 'pending', 'sold'])"
+            }
+        },
+        "GET /api/pet/:id": {
+            "info": {
+                "summary": "查询",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {},
+
+            "response": {
+                "id": "@id",
+                "category": {
+                    "id": "@id",
+                    "name": "@title"
+                },
+                "name": "GET /api/pet/:id",
+                "photoUrls|1-5": ["@image(200x100)"],
+                "tags|1-5": [{
+                    "id": "@id",
+                    "name": "@title"
+                }],
+                "status": "@pick(['available', 'pending', 'sold'])"
+            }
+        },
+        "GET /api/pets/findByStatus": { // 注意路径参数可能引起路由配置冲突
+            "info": {
+                "summary": "查询 by querystring",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {
+                "querystring": {
+                    "status": "available" // available, pending, sold
+                }
+            },
+
+            "response": {
+                "pet|1-10": [{
+                    "id": "@id",
+                    "category": {
+                        "id": "@id",
+                        "name": "@title"
+                    },
+                    "name": "GET /api/pets/findByStatus",
+                    "photoUrls|1-5": ["@image(200x100)"],
+                    "tags|1-5": [{
+                        "id": "@id",
+                        "name": "@title"
+                    }],
+                    "status": "@pick(['available', 'pending', 'sold'])"
+                }]
+            }
+        },
+        "POST /api/pet/:id": {
+            "info": {
+                "summary": "修改 by POST urlencoded",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {
+                "header": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "body": {
+                    "name": "doggie",
+                    "status": "available"
+                }
+            },
+
+            "response": {
+                "id": "@id",
+                "category": {
+                    "id": "@id",
+                    "name": "@title"
+                },
+                "name": "POST /api/pet/:id",
+                "photoUrls|1-5": ["@image(200x100)"],
+                "tags|1-5": [{
+                    "id": "@id",
+                    "name": "@title"
+                }],
+                "status": "@pick(['available', 'pending', 'sold'])"
+            }
+        },
+        "POST /api/pet/:id/uploadImage": {
+            "info": {
+                "summary": "修改 by POST multipart/form-data",
+                "module": "接口配置示例-RESTFul",
+                "description": "",
+                "author": "Swagger"
+            },
+
+            "request": {
+                "header": {
+                    "Content-Type": "multipart/form-data"
+                },
+                "body": {
+                    "name": "doggie",
+                    "file": "图片文件"
+                }
+            },
+
+            "response": {
+                "route": "POST /api/pet/:id/uploadImage"
+            }
+        },
+        // 其他示例
+        "GET /api/page/index": {
+            "info": {
+                "summary": "首页接口",
+                "module": "接口配置示例-页面接口",
+                "description": "即页面相关的接口, 一般会聚合多个细粒度接口以优化性能",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {
+                "route": "GET /api/page/index"
+            }
+        },
+        "GET /api/queryUser": {
+            "info": {
+                "summary": "应对不符合 REST 风格的接口",
+                "module": "接口配置示例-不符合 REST 风格的接口",
+                "description": "例如: /api.php?act=queryUser",
+                "author": "Sun"
+            },
+            "request": {
+                "querystring": {
+                    "*act": "queryUser"
+                }
+            },
+            "response": {
+                "route": "GET /api/queryUser"
             }
         }
     }
