@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var util = require('./util');
 var rc = require('./route-config');
 
