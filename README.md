@@ -77,7 +77,7 @@ The minimal `_mockserver.json`
 }
 ```
 
-Please view [_mockserver-config.md](https://github.com/ufologist/puer-mock/blob/master/config.md) for more detail config doc.
+Please view [mockserver config doc](https://github.com/ufologist/puer-mock/blob/master/config.md) for more detail info.
 
 You can see more settings to config mock server in [`_mockserver.json`](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json).
 
