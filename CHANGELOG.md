@@ -10,7 +10,7 @@
   * [feat] 新增了很多的配置示例, [现在配置了 32 个用作示例的接口](https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json)
   * [feat] [新增了测试用例](https://github.com/ufologist/puer-mock/tree/master/test)
   * [feat] 重构代码, 拆分为 `puer-mock.js` `route-config.js` `validate-request.js` `util.js`
-  * [fix] #1 mockConfigFileWatcher.close is not a function
+  * [fix] [#1 mockConfigFileWatcher.close is not a function](https://github.com/ufologist/puer-mock/issues/1)
 
 * v1.1.1 2016-8-31
 
