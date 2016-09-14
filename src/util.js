@@ -1,5 +1,8 @@
 var fs = require('fs');
 
+/**
+ * 支持跨域的 header 设置
+ */
 var CORS_HEADER = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -7,7 +10,9 @@ var CORS_HEADER = {
     'Access-Control-Allow-Credentials': 'true'
 };
 
-// jQuery.isEmptyObject
+/**
+ * 借用 jQuery.isEmptyObject
+ */
 function isEmptyObject(obj) {
     var name;
     for (name in obj) {
@@ -16,7 +21,15 @@ function isEmptyObject(obj) {
     return true;
 }
 
-// 借用 puer 中的 watchFile 函数
+/**
+ * 借用 puer 中的 watchFile 函数
+ * 
+ * 注意 fs.watch 和 fs.watchFile 的区别
+ * fs.watch 监听操作系统提供的各种"事件"实现的, 返回 fs.FSWatcher 可用于后续的关闭 watch, 例如 FSWatcher.close
+ * fs.watchFile 原理是轮询, 没有返回值, 要关闭 watchFile, 需要使用 fs.unwatchFile
+ * 
+ * [fs.watchFile 和 fs.watch 的区别](https://cnodejs.org/topic/51341be4df9e9fcc58efc3af)
+ */
 function watchFile(filename, callback) {
     var isWin = (process.platform === 'win32');
     if (isWin) {
@@ -36,7 +49,9 @@ function watchFile(filename, callback) {
     }
 }
 
-// 将 API 进行分组排列
+/**
+ * 将 mock 配置按照 module 进行分组
+ */
 function groupApiByModuleName(mockConfig) {
     // clone mockConfig
     var _mockConfig = JSON.parse(JSON.stringify(mockConfig));

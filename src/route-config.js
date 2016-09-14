@@ -6,14 +6,19 @@ var Mock = require('mockjs');
 var validateRequest = require('./validate-request');
 var util = require('./util');
 
+/**
+ * 读取 _mockserver.json 配置文件
+ */
 function getMockConfig(mockConfigFile) {
-    // 不使用 require('./mock-api.json') 因为他会缓存文件的内容, 并不是每次都重新读取
+    // 不使用 require('./_mockserver.json') 因为他会缓存文件的内容, 并不是每次都重新读取
     var mockConfigContent = fs.readFileSync(mockConfigFile, {encoding: 'utf-8'});
     // 通过 stripJsonComments 让 JSON 文件中可以使用注释
     return JSON.parse(stripJsonComments(mockConfigContent));
 }
 
-// 生成 route 配置
+/**
+ * 生成 puer route 配置
+ */
 function generateRouteConfig(mockConfig) {
     var routeConfig = {};
 
@@ -38,7 +43,9 @@ function generateRouteConfig(mockConfig) {
     return routeConfig;
 }
 
-// 发送假的接口数据
+/**
+ * 发送接口假数据
+ */
 function sendMockData(request, response, mockResponse) {
     var mockResponseData = Mock.mock(mockResponse);
     // enable CORS

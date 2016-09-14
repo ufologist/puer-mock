@@ -2,12 +2,14 @@ var qs = require('querystring');
 
 var util = require('./util');
 
-// 对 request 请求的参数(即输入)做验证
-// 在接口配置中配置期望的值, 然后验证 request 中是否包含这些期望的值
-// 例如看 querystring 是否具有某个参数等等
+/**
+ * 对 request 请求的参数(即输入)做验证
+ * 在接口配置中配置期望的值, 然后验证 request 中是否包含这些期望的值
+ * 例如看 querystring 是否具有某个参数等等
+ */
 function validateRequest(request, response, mockRequest, onValid) {
     // 因为 puer 没有提供使用 express middleware 的机制, 不能用 body-parser 只好自己解析出 body 内容了
-    // 由于是异步的, 只好将所有的验证逻辑都放在 end 事件中了
+    // 由于是异步的, 只好将所有的验证逻辑都放在 end 事件中
     request._rawBody = '';
     request.on('data', function(chunk) {
         request._rawBody += chunk;
@@ -28,22 +30,26 @@ function validateRequest(request, response, mockRequest, onValid) {
     });
 }
 
-// 获取待验证的期望值和实际值
-// {
-//     querystring: {
-//         "参数名": {
-//             expectedValue: "期望值",
-//             factValue: "实际值"
-//         }
-//     },
-//     header: {},
-//     body: {}
-// }
+/**
+ * 获取待验证的期望值和实际值
+ * 
+ * @return {
+ *     querystring: {
+ *         "参数名": {
+ *             expectedValue: "期望值",
+ *             factValue: "实际值"
+ *         }
+ *     },
+ *     header: {},
+ *     body: {}
+ * }
+ */
 function getRequestValues(request, mockRequestConfig) {
     var querystring = mockRequestConfig ? mockRequestConfig.querystring : {};
     var header = mockRequestConfig ? mockRequestConfig.header : {};
     var body = mockRequestConfig ? mockRequestConfig.body : {};
 
+    // 先找出所有的必选参数, 最后一起做验证
     var requestValues = {
         querystring: {},
         header: {},
@@ -54,11 +60,9 @@ function getRequestValues(request, mockRequestConfig) {
     if (querystring) {
         for (var expectedName in querystring) {
             // 只验证必传参数
-            // 必传参数的规则是在名字的前或后加一个星号(*)作为标识, 从表单必填项获得的灵感
-            // 先找出所有的必选参数, 最后一起做验证
-            if (expectedName.indexOf('*') != -1) {
+            if (isRequired(expectedName)) {
                 // 去除用作必要参数的标识
-                var _expectedName = expectedName.replace(/\*/g, '');
+                var _expectedName = stripRequiredPlaceholder(expectedName);
                 var expectedValue = querystring[expectedName];
                 var factValue = request.query[_expectedName];
 
@@ -73,8 +77,8 @@ function getRequestValues(request, mockRequestConfig) {
     // 验证请求接口时是否包含特定的 header
     if (header) {
         for (var expectedName in header) {
-            if (expectedName.indexOf('*') != -1) {
-                var _expectedName = expectedName.replace(/\*/g, '');
+            if (isRequired(expectedName)) {
+                var _expectedName = stripRequiredPlaceholder(expectedName);
                 var expectedValue = header[expectedName];
                 var factValue = request.get(_expectedName);
 
@@ -97,8 +101,8 @@ function getRequestValues(request, mockRequestConfig) {
             var urlencoded = qs.parse(request._rawBody);
 
             for (var expectedName in body) {
-                if (expectedName.indexOf('*') != -1) {
-                    var _expectedName = expectedName.replace(/\*/g, '');
+                if (isRequired(expectedName)) {
+                    var _expectedName = stripRequiredPlaceholder(expectedName);
                     var expectedValue = body[expectedName];
                     var factValue = urlencoded[_expectedName];
 
@@ -122,8 +126,8 @@ function getRequestValues(request, mockRequestConfig) {
             }
 
             for (var expectedName in body) {
-                if (expectedName.indexOf('*') != -1) {
-                    var _expectedName = expectedName.replace(/\*/g, '');
+                if (isRequired(expectedName)) {
+                    var _expectedName = stripRequiredPlaceholder(expectedName);
                     var expectedValue = body[expectedName];
                     var factValue = multipartFormData[_expectedName];
 
@@ -165,14 +169,17 @@ function getRequestValues(request, mockRequestConfig) {
     return requestValues;
 }
 
-// 验证数据类型
+/**
+ * 验证数据类型
+ * 
+ * @return [{
+ *     required: true,
+ *     type: "string", // string/number/boolean/object
+ *     factValue: "实际值",
+ *     querystring: "参数名" // header/body
+ * }]
+ */
 function validateDataType(requestValues) {
-    // [{
-    //     required: true,
-    //     type: "string", // string number boolean object
-    //     factValue: "实际值",
-    //     querystring: "参数名" // header, body
-    // }]
     var errors = [];
 
     for (var paramType in requestValues) {
@@ -231,6 +238,21 @@ function validateDataType(requestValues) {
     }
 
     return errors;
+}
+
+/**
+ * 必传参数的规则是在名字的前面或后面加一个星号(*)作为标识,
+ * 从表单必填项获得的灵感
+ */
+function isRequired(name) {
+    return name.indexOf('*') != -1;
+}
+/**
+ * 去除参数名中包含的必传标识
+ * 例如 *name -> name
+ */
+function stripRequiredPlaceholder(name) {
+    return name.replace(/\*/g, '');
 }
 
 module.exports = validateRequest;
