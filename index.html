@@ -32,6 +32,15 @@
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>features</h2>
 
 <ul>
+<li>mock server</li>
+<li>configurable API route
+
+<ul>
+<li>API request</li>
+<li>API response mock data</li>
+<li>validate API request params</li>
+</ul>
+</li>
 <li>effective immediately when config changed</li>
 <li>JSONP support</li>
 <li>CORS support</li>
@@ -41,7 +50,7 @@
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>install</h2>
 
-<p>Please install <a href="https://github.com/leeluolee/puer">puer</a> first.</p>
+<p>Please install <a href="https://github.com/leeluolee/puer" title="puer 1.x">puer</a> first.</p>
 
 <blockquote>
 <p>Puer - more than a live-reload server , built for efficient frontend development</p>
@@ -67,8 +76,7 @@ npm install puer-mock --save-dev
 
 <ol>
 <li>copy <code>node_modules/puer-mock/example</code> files to your project root directory</li>
-<li>cd <code>yourprojectrootdir</code>
-</li>
+<li><code>cd yourprojectrootdir</code></li>
 <li>
 <p><code>puer -a _mockserver.js</code></p>
 
@@ -80,8 +88,8 @@ npm install puer-mock --save-dev
 <p>view mock api</p>
 
 <ul>
-<li>open <code>http://localhost:8000/api/users</code> view mock api return mock data</li>
-<li>open <code>http://localhost:8000/api/users?callback=test</code> view mock api return mock data by JSONP</li>
+<li>open <code>http://localhost:8000/api/configdemo-response/mock</code> view mock api return mock data</li>
+<li>open <code>http://localhost:8000/api/configdemo-response/mock?callback=test</code> view mock api return mock data by JSONP</li>
 <li>open <code>http://localhost:8000/_apidoc.html</code> view built-in all mock api doc</li>
 </ul>
 </li>
@@ -102,6 +110,8 @@ npm install puer-mock --save-dev
         }
     }
 }</pre></div>
+
+<p>Please view <a href="https://github.com/ufologist/puer-mock/blob/master/_mockserver-config.md">mockserver config doc</a> for more detail info.</p>
 
 <p>You can see more settings to config mock server in <a href="https://github.com/ufologist/puer-mock/blob/master/example/_mockserver.json"><code>_mockserver.json</code></a>.</p>
 
@@ -180,6 +190,7 @@ routeConfig[<span class="pl-s"><span class="pl-pds">'</span>GET /500<span class=
 <li>前端/APP端</li>
 <li>任何与后端接口打交道的人</li>
 <li><a href="https://github.com/ufologist/puer-mock/blob/master/why-your-need-a-mock-server.md">为什么你需要一个 mock server</a></li>
+<li><a href="https://www.v2ex.com/t/303650">关于 puer-mock 的讨论</a></li>
 </ul>
 
 <p>感谢 puer 提供了如此强大的 mock 机制, 感谢 Mock.js 带来的假数据, 我才有幸做了这么一个扩展工具.</p>
