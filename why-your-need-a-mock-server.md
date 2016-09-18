@@ -174,13 +174,22 @@ puer-mock 具有以下特点
 
   > RAP通过GUI工具帮助WEB工程师更高效的管理接口文档，同时通过分析接口结构自动生成Mock数据、校验真实接口的正确性，使接口文档成为开发流程中的强依赖。有了结构化的API数据，RAP可以做的更多，而我们可以避免更多重复劳动。
 
-* [小幺鸡](http://git.oschina.net/zhoujingjie/apiManager)
+* [api-document](https://github.com/yalishizhude/api-document)
 
-  > [小幺鸡](http://www.xiaoyaoji.com.cn/index.html)简单好用的在线接口管理系统, 和 RAP 类似
+  > HTTP API document server, 用来管理HTTP API文档和测试http请求的服务器
+  > 
+  > * 支持在线编辑和查看文档
+  > * 提供了一个mock服务器用来响应前端浏览器请求，不需要后端服务器和数据库（需要安装api-mock）
+  > * 发送请求给后端并可根据后端返回结果更新接口开发状态
+  > * 提供JSON schema校验规则来检查请求/返回参数
 
 * [AMP](https://github.com/gomeplusFED/AMP)
 
   > Api manage platform
+
+* [小幺鸡](http://git.oschina.net/zhoujingjie/apiManager)
+
+  > [小幺鸡](http://www.xiaoyaoji.com.cn/index.html)简单好用的在线接口管理系统, 和 RAP 类似
 
 * [NEI 接口管理平台](http://nei.netease.com/ "Netease Easy Interface")
 
