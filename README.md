@@ -15,6 +15,11 @@ Start a mock server never ever so easy and configurable, no code needed, you onl
 
 ## features
 
+* mock server
+* configurable API route
+  * API request
+  * API response mock data
+  * validate API request params
 * effective immediately when config changed
 * JSONP support
 * CORS support
@@ -22,7 +27,7 @@ Start a mock server never ever so easy and configurable, no code needed, you onl
 
 ## install
 
-Please install [puer](https://github.com/leeluolee/puer) first.
+Please install [puer](https://github.com/leeluolee/puer "puer 1.x") first.
 
 > Puer - more than a live-reload server , built for efficient frontend development
 

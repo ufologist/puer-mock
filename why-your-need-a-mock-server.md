@@ -124,7 +124,7 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 
 ![puer-mock-api-doc-html](https://ufologist.github.io/puer-mock/puer-mock-api-doc-html.png?v1)
 
-puer-mock 具有以下特点
+使用 puer-mock 主要为前后端提供了一份接口文档, 并输出符合接口规范的假数据, 便于前后端并行开发. 具有以下特点
 * 简单配置即可定义 mock 接口, 不需要你写代码
 * 配置接口及时生效, 修改即用
 * 支持 JSONP 的方式调用接口
