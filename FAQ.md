@@ -2,7 +2,7 @@
 
 关于 puer-mock 使用过程中的常见问题答疑.
 
-感谢 @no13bus 在 v2ex 中找到我, 一起讨论了一些实际使用过程中的想法.
+感谢 [@no13bus](https://github.com/no13bus) 在 v2ex 中找到我, 一起讨论了一些实际使用过程中的想法.
 
 ## puer-mock 的主要用途?
 
