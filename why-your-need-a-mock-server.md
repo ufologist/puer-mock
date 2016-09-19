@@ -224,3 +224,11 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 * [imitator](https://github.com/hanan198501/imitator)
 
   > 一个简单的nodejs服务器，可以实现数据模拟，静态资源映射，HTTP代理等服务
+
+* [grunt-restful-mock](https://github.com/bubkoo/grunt-restful-mock)
+
+  > A mock server returning random JSON from schema.
+  >
+  > 模拟 AJAX 请求返回的 JSON 数据，减少前端工程师对后端接口的依赖，在接口规范的基础之上并行开发。
+  >
+  > 使用过 mockjax 的同学应该遇到过一个苦恼的问题，那就是需要在业务代码中添加许多调试用的 mock 配置，上线时需要人肉删除这些 JS 代码，具有侵入性且容易出错，同时 mock 环境和测试环境的切换也不是很方便。作者在经历过这些痛点之后，基于 grunt 开发了该插件。
