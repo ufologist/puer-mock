@@ -16,7 +16,7 @@ Start a mock server never ever so easy and configurable, no code needed, you onl
 ## features
 
 * mock server
-* configurable API route
+* configurable RESTful API route
   * API request
   * API response mock data
   * validate API request params
