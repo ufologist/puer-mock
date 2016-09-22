@@ -1,5 +1,8 @@
-// _mockserver.json - mock 接口的配置文件
+// _mockserver.json - mock 接口的配置文件, 相当于一份接口文档的描述文件
 // 可以在这个 JSON 中使用注释, 方便对接口做一些说明
+//
+// 在顶部注释中可以说明下项目接口协商要点
+// https://github.com/f2e-journey/treasure/blob/master/api.md#接口协商要点
 //
 // The minimal _mockserver.json, JSON 必须包含如下信息, 其他字段均是可选字段
 // {
