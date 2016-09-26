@@ -6,6 +6,10 @@ var util = require('./util');
  * 对 request 请求的参数(即输入)做验证
  * 在接口配置中配置期望的值, 然后验证 request 中是否包含这些期望的值
  * 例如看 querystring 是否具有某个参数等等
+ * 
+ * 如果需要更加完整的验证功能, 请参考
+ * express-validation: a middleware that validates the body, params, query, headers of a request and returns a 400 Bad request response if the validation fails.
+ * https://github.com/AndrewKeig/express-validation
  */
 function validateRequest(request, response, mockRequest, onValid) {
     // 因为 puer 没有提供使用 express middleware 的机制, 不能用 body-parser 只好自己解析出 body 内容了
