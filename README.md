@@ -11,7 +11,7 @@
 
 [Puer](https://github.com/leeluolee/puer) + [Mock.js](https://github.com/nuysoft/Mock) = A configurable mock server with configurable mock(random) data.
 
-Start a mock server never ever so easy and configurable, no code needed, you only need config some mock api route and some mock data template, it all done! 
+Start a mock server never ever so easy and configurable, no code needed, you only need config some mock API route and some mock data template, it all done! 
 
 ## features
 
@@ -61,14 +61,16 @@ npm install puer-mock --save-dev
    "dev": "puer -a _mockserver.js"
    ```
 
-4. view mock api
-  * open `http://localhost:8000/api/configdemo-response/mock` view mock api return mock data
-  * open `http://localhost:8000/api/configdemo-response/mock?callback=test` view mock api return mock data by JSONP
-  * open `http://localhost:8000/_apidoc.html` view built-in all mock api doc
-5. define your mock api in `_mockserver.json`
-6. view your mock api(Yes! it with immediate effect)
+4. view mock API
+  * open `http://localhost:8000/api/configdemo-response/mock` view mock API return mock data
+  * open `http://localhost:8000/api/configdemo-response/mock?callback=test` view mock API return mock data by JSONP
+  * open `http://localhost:8000/_apidoc.html` view built-in all mock API doc
+5. define your mock API in `_mockserver.json`
+6. view your mock API(Yes! it with immediate effect)
 
 ## config
+
+Config mock API in `_mockserver.json`.
 
 The minimal `_mockserver.json`
 
@@ -94,7 +96,9 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
 
 ## customize
 
-* You may customize mock api doc
+Customize launch mock server in `_mockserver.js`. 
+
+* You may customize mock API doc
   * You may customize `/_apidoc` route direct service a more graceful doc
 
     ```javascript
@@ -105,7 +109,27 @@ You can see more settings to config mock server in [`_mockserver.json`](https://
     });
     ```
 
-  * You may customize `/_apidoc.html` which get mock api JSON from `/_apidoc`, you may totally implement it by yourself
+  * You may customize `/_apidoc.html` which get mock API JSON from `/_apidoc`, you may totally implement it by yourself
+
+* You may customize config file and launch file
+
+  If you do not use default `_mockserver.json` or `_mockserver.js`
+  
+  ```javascript
+  // use _mockserver2.json for config file
+  //
+  // _mockserver.js
+  // puer -a _mockserver.js
+  module.exports = require('puer-mock')(__filename, './_mockserver2.json');
+  ```
+
+  ```javascript
+  // use _mockserver2.js and _mockserver2.json
+  //
+  // _mockserver2.js
+  // puer -a _mockserver2.js
+  module.exports = require('puer-mock')(__filename, './_mockserver2.json');
+  ```
 
 * Play it fun with your imagination.
 
