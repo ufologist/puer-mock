@@ -28,12 +28,14 @@
     "api": {
         // fullconfig 做为接口定义的介绍, 方便使用的人可以在这里看怎么定义接口
         "GET /api/fullconfig": {
-            // 是否禁用该接口, 一般和 puer 的 proxy 方式一起使用
+            // 是否禁用该接口
             // ----------
-            // 例如我们可以通过 puer 代理的方式来代理后端的真实接口
-            // puer -a _mockserver.js -t http://localhost:8001
+            // 推荐和代理一起使用, 需要规范 mock api 统一定义在一个路径下面, 例如 /api/
             //
-            // 这样当后端接口开发完成以后, 就可以立马切换到后端的真实接口, 前端完全不用动
+            // 下面我们以 puer-proxy 代理的方式来代理后端的真实接口
+            // puer-proxy -a _mockserver.js -c /api/ -r -t http://localhost:8001
+            //
+            // 这样当后端接口开发完成以后, 就可以设置成 true 立马切换到后端的真实接口, 前端完全不用动
             // "disabled": true,
 
             // 接口的介绍信息

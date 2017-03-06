@@ -168,6 +168,7 @@ Customize launch mock server in `_mockserver.js`.
 * 前端/APP端
 * 任何与后端接口打交道的人
 * [为什么你需要一个 mock server](https://github.com/ufologist/puer-mock/blob/master/why-your-need-a-mock-server.md)
+* [推荐与 puer-proxy 一起使用开发时灵活切换 mock 或者后端接口](https://github.com/ufologist/puer-proxy)
 * [关于 puer-mock 的讨论](https://www.v2ex.com/t/303650)
 * [puer-mock FAQ](https://github.com/ufologist/puer-mock/blob/master/FAQ.md)
 * [前后端接口规范](https://github.com/f2e-journey/treasure/blob/master/api.md)
