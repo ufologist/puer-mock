@@ -1,5 +1,9 @@
 # CHANGELOG
 
+* v1.2.2 2017-9-8
+
+  * 升级 [mock-route](https://github.com/ufologist/mock-route) 模块到 `1.3.1` 版本, 现在支持 `.js` 的 mock 配置文件了
+
 * v1.2.1 2017-9-8
 
   * [refactor] 抽取了 [mock-route](https://github.com/ufologist/mock-route) 模块, 重构代码

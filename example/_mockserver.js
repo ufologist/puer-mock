@@ -7,6 +7,9 @@ module.exports = require('puer-mock')();
 // 例如: puer -a _mockserver2.js
 // module.exports = require('puer-mock')(__filename, './_mockserver2.json');
 
+// 现在 _mockserver 的配置支持 js 文件了, 因此你可以
+// module.exports = require('puer-mock')(__filename, './_mockserver-config.js');
+
 // 如果你想自定义 /_apidoc 做出一份更加高大上的接口文档
 // module.exports = require('puer-mock')(null, null, function(mockConfig) {
 //     // 任你自由发挥

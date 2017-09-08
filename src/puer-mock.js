@@ -7,6 +7,9 @@ var MOCK_JS_FILE = './_mockserver.js';
 var MOCK_CONFIG_FILE = './_mockserver.json';
 var mockConfigFileWatcher;
 
+// @see https://github.com/ufologist/puer-mock/issues/10
+delete Error.prepareStackTrace;
+
 /**
  * 获取 puer mock route 的配置信息
  * 
