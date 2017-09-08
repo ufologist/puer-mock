@@ -1,5 +1,9 @@
 # CHANGELOG
 
+* v1.2.1 2017-9-8
+
+  * [refactor] 抽取了 [mock-route](https://github.com/ufologist/mock-route) 模块, 重构代码
+
 * v1.2.0 2016-9-14
 
   特此中秋佳节之际, 发布新版本, 祝大家中秋节快乐.

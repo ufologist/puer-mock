@@ -1,27 +1,6 @@
 var fs = require('fs');
 
 /**
- * 支持跨域的 header 设置
- */
-var CORS_HEADER = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type',
-    'Access-Control-Allow-Credentials': 'true'
-};
-
-/**
- * 借用 jQuery.isEmptyObject
- */
-function isEmptyObject(obj) {
-    var name;
-    for (name in obj) {
-        return false;
-    }
-    return true;
-}
-
-/**
  * 借用 puer 中的 watchFile 函数
  * 
  * 注意 fs.watch 和 fs.watchFile 的区别
@@ -60,37 +39,7 @@ function unwatchFile(watcher, filename) {
     }
 }
 
-/**
- * 将 mock 配置按照 module 进行分组
- */
-function groupApiByModuleName(mockConfig) {
-    // clone mockConfig
-    var _mockConfig = JSON.parse(JSON.stringify(mockConfig));
-
-    var apiMockConifg = _mockConfig.api;
-    for (var routeKey in apiMockConifg) {
-        var mock = apiMockConifg[routeKey];
-        // 分组了就不需要原来的属性了
-        delete apiMockConifg[routeKey];
-
-        var moduleName = '';
-        if (mock.info && mock.info.module) {
-            moduleName = mock.info.module;
-        }
-        if (!apiMockConifg[moduleName]) {
-            apiMockConifg[moduleName] = {};
-        }
-
-        apiMockConifg[moduleName][routeKey] = mock;
-    }
-
-    return _mockConfig;
-}
-
 module.exports = {
-    CORS_HEADER: CORS_HEADER,
-    isEmptyObject: isEmptyObject,
     watchFile: watchFile,
-    unwatchFile: unwatchFile,
-    groupApiByModuleName: groupApiByModuleName
+    unwatchFile: unwatchFile
 };

@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 var util = require('./util');
-var rc = require('./route-config');
+var mockRoute = require('mock-route');
 
 var MOCK_JS_FILE = './_mockserver.js';
 var MOCK_CONFIG_FILE = './_mockserver.json';
@@ -23,7 +23,7 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
     // 达到刷新 mockConfigFile 的目的
     //
     // XXX 如果在运行期间先修改 mockJsFile 再修改 mockConfigFile, 会造成无限循环重复监听(控制台被刷屏),
-    // 因此最好不要在运行期间修改 mockJsFile()
+    // 因此最好不要在运行期间修改 mockJsFile
     // 
     // 我们这里先监听文件再读取 JSON, 以防止出现 JSON 读取异常(例如格式错误)造成程序不重新加载的问题
     mockConfigFileWatcher = util.watchFile(_mockConfigFile, function() {
@@ -31,9 +31,9 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
         fs.utimes(_mockJsFile, new Date(), new Date());
     });
 
-    var mockConfig = rc.getMockConfig(_mockConfigFile);
-    var routeConfig = rc.generateRouteConfig(mockConfig);
-    var groupMockConfig = util.groupApiByModuleName(mockConfig);
+    var mockConfig = mockRoute.getMockConfig(_mockConfigFile);
+    var routeConfig = mockRoute.generateRouteConfig(mockConfig);
+    var groupMockConfig = mockRoute.groupApiByModuleName(mockConfig);
 
     appendApidocRoute(routeConfig, renderApiDoc, groupMockConfig);
 
@@ -48,7 +48,7 @@ function appendApidocRoute(routeConfig, renderApiDoc, groupMockConfig) {
         // /_apidoc 也做为一个接口来提供(使用 CORS 方式), 这样更加便于自定义 _apidoc 的 UI.
         // 完全支持自己写一套 UI 来获取解析 /_apidoc 提供的 JSON 数据来展现接口文档
         // 提供了默认的 example/_apidoc.html 做为默认的接口文档实现
-        response.set(util.CORS_HEADER);
+        mockRoute.enableCors(request, response);
 
         if (renderApiDoc) {
             response.send(renderApiDoc(groupMockConfig));
