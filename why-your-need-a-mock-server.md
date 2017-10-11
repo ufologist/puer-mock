@@ -174,6 +174,14 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 
   > RAP通过GUI工具帮助WEB工程师更高效的管理接口文档，同时通过分析接口结构自动生成Mock数据、校验真实接口的正确性，使接口文档成为开发流程中的强依赖。有了结构化的API数据，RAP可以做的更多，而我们可以避免更多重复劳动。
 
+* [Easy Mock | 大搜车](https://github.com/easy-mock/easy-mock)
+
+  > Easy Mock 是一个可视化，并且能快速生成模拟数据的持久化服务
+
+* [YApi | 去哪儿](https://github.com/YMFE/yapi)
+
+  > 可视化接口管理平台
+
 * [api-document](https://github.com/yalishizhude/api-document)
 
   > HTTP API document server, 用来管理HTTP API文档和测试http请求的服务器
