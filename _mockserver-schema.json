@@ -45,6 +45,11 @@
                             "title": "是否禁用该接口",
                             "description": "是否禁用该接口"
                         },
+                        "proxy": {
+                            "type": ["string", "object"],
+                            "title": "是否代理接口",
+                            "description": "直接代理远程的接口, 方便在开发的过程中切换到后端的真实接口"
+                        },
                         "info": {
                             "type": "object",
                             "title": "接口的介绍信息",

@@ -1,6 +1,6 @@
 {
   "name": "puer-mock",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Puer + Mock.js = A configurable mock server with configurable mock(random) data.",
   "main": "src/puer-mock.js",
   "scripts": {
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/ufologist/puer-mock",
   "dependencies": {
-    "mock-route": "^1.3.1"
+    "mock-route": "^1.4.0"
   }
 }

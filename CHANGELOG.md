@@ -1,5 +1,9 @@
 # CHANGELOG
 
+* v1.2.3 2017-10-12
+
+  * 升级 [mock-route](https://github.com/ufologist/mock-route) 模块到 `1.4.0` 版本, 现在支持 `proxy` 配置代理接口了
+
 * v1.2.2 2017-9-8
 
   * 升级 [mock-route](https://github.com/ufologist/mock-route) 模块到 `1.3.1` 版本, 现在支持 `.js` 的 mock 配置文件了

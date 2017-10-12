@@ -371,4 +371,16 @@ describe('配置 request', function() {
             done();
         });
     });
+
+    it('GET /api/configdemo-request/pagination jsonp', function(done) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'jsonp',
+            url: API_ROOT + '/api/configdemo-request/pagination'
+        }).then(function(result) {
+            expect(result.data.pagination).toBeTruthy();
+            expect(result.data.foo.length).toBeTruthy();
+            done();
+        });
+    });
 });
