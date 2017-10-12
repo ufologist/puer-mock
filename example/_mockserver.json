@@ -38,6 +38,23 @@
             // 这样当后端接口开发完成以后, 就可以设置成 true 立马切换到后端的真实接口, 前端完全不用动
             // "disabled": true,
 
+            // 是否代理接口
+            // ----------
+            // 设置这个就会直接代理远程的接口, 方便在开发的过程中切换到后端的真实接口
+            // 例如下面的配置
+            // 我们请求 http://localhost:8000/api/fullconfig
+            // 实际上会由代理去请求 http://localhost:8001/api/fullconfig 返回数据
+            // "proxy": "http://localhost:8001",
+            // 
+            // 另外 proxy 支持直接配置为一个接口 URL, 或者使用 object 类型来控制更多的代理配置项
+            // 当直接配置为一个接口 URL 时, 等同于 {"target": "URL"}
+            // 完成的配置项请参考 https://github.com/nodejitsu/node-http-proxy#options
+            // 例如:
+            // "proxy": {
+            //     "target": "http://localhost:8001/path",
+            //     "ignorePath": true
+            // },
+
             // 接口的介绍信息
             "info": {
                 "summary": "接口介绍",
@@ -516,6 +533,44 @@
             "response": {
                 "route": "GET /api/configdemo-disabled"
             }
+        },
+        // proxy
+        // 如果发现请求被重定向到了原来的 URL,
+        // 浏览器报错:
+        // Refused to connect to 'http://domain.com/xxx/'
+        // because it violates the following Content Security Policy directive: "default-src 'self'".
+        // Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.
+        // 试着将请求时的 URL 以 / 结尾, 例如: http://localhost:8000/api/user/
+        "GET /users/:username": {
+            "proxy": "https://api.github.com",
+            "info": {
+                "summary": "代理某个接口 string 类型",
+                "module": "接口配置示例-代理接口",
+                "description": "可以很方便的切换到真实的接口",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {}
+        },
+        "GET /api/configdemo-proxy/object": {
+            "proxy": {
+                "target": "https://api.github.com/users/ufologist",
+                // 使用 ignorePath 参数, 就相当于映射接口的功能: 调用 A 接口实际相当于调用 B 接口
+                // 访问 http://localhost:8000/api/configdemo-proxy/object
+                // 等同于访问 https://api.github.com/users/octocat
+                // 不会将源 URL 的路径(包括 querystring)追加到 target 的 URL 上面
+                // 这样就不需要 mock 接口匹配真实接口的 URL 了
+                // 不过一般 mock 接口的 URL 与真实接口的 URL 是一模一样的, 这样才能做到无缝切换
+                "ignorePath": true
+            },
+            "info": {
+                "summary": "代理某个接口 object 类型",
+                "module": "接口配置示例-代理接口",
+                "description": "可以很方便的切换到真实的接口",
+                "author": "Sun"
+            },
+            "request": {},
+            "response": {}
         },
 
         // 演示如何配置 RESTful 接口
