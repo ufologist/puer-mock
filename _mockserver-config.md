@@ -33,6 +33,9 @@ PS: 运行单元测试需要先开启 puer-mock(使用默认的 `example/_mockse
             // 是否禁用该接口(非必要属性)
             // "disabled": false,
 
+            // 是否代理接口(非必要属性)
+            // "proxy": "http://localhost:8001",
+
             // 接口的介绍信息(非必要属性)
             // "info": {
             //     "summary": "",
@@ -83,6 +86,23 @@ PS: 运行单元测试需要先开启 puer-mock(使用默认的 `example/_mockse
             //
             // 这样当后端接口开发完成以后, 就可以立马切换到后端的真实接口, 前端完全不用动
             // "disabled": true,
+
+            // 是否代理接口
+            // ----------
+            // 设置这个就会直接代理远程的接口, 方便在开发的过程中切换到后端的真实接口
+            // 例如下面的配置
+            // 我们请求 http://localhost:8000/api/fullconfig
+            // 实际上会由代理去请求 http://localhost:8001/api/fullconfig 返回数据
+            // "proxy": "http://localhost:8001",
+            // 
+            // 另外 proxy 支持直接配置为一个接口 URL, 或者使用 object 类型来控制更多的代理配置项
+            // 当直接配置为一个接口 URL 时, 等同于 {"target": "URL"}
+            // 完成的配置项请参考 https://github.com/nodejitsu/node-http-proxy#options
+            // 例如:
+            // "proxy": {
+            //     "target": "http://localhost:8001/path",
+            //     "ignorePath": true
+            // },
 
             // 接口的介绍信息
             "info": {
