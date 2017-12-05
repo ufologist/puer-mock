@@ -32,7 +32,7 @@ Please install [puer](https://github.com/leeluolee/puer "puer 1.x") first.
 > Puer - more than a live-reload server , built for efficient frontend development
 
 ```
-npm install puer -g
+npm install puer@1.x -g
 ```
 
 And then install `puer-mock` package in your project root directory.
