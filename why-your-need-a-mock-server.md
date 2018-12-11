@@ -205,6 +205,10 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
   >
   > [感谢 @int64ago 的分享](https://www.v2ex.com/t/303650#reply7)
 
+* [eoLinker](https://www.eolinker.com)
+
+  > AMS API管理平台: 代码生成文档 | 自动化测试 | Mock数据 | 版本管理
+
 * [EasyPM](https://easypm.cn/)
 
   > RESTful API 管理: 帮助采用RESTful架构的团队更方便地管理API，并且支持版本管理，也可以一键生成API文档
@@ -224,6 +228,10 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 * [CrapApi](https://github.com/EhsanTang/CrapApi)
 
   > 应用接口管理系统
+
+* [APIStub](http://www.apistub.cn/)
+
+  > 服务器接口模拟平台
 
 * [FMS](https://github.com/mobejs/mobe)
 
