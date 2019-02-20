@@ -31,7 +31,9 @@ function puerMock(mockJsFile, mockConfigFile, renderApiDoc) {
     // 我们这里先监听文件再读取 JSON, 以防止出现 JSON 读取异常(例如格式错误)造成程序不重新加载的问题
     mockConfigFileWatcher = util.watchFile(_mockConfigFile, function() {
         util.unwatchFile(mockConfigFileWatcher, _mockConfigFile);
-        fs.utimes(_mockJsFile, new Date(), new Date());
+        fs.utimes(_mockJsFile, new Date(), new Date(), function(error) {
+            console.error(error);
+        });
     });
 
     var mockConfig = mockRoute.getMockConfig(_mockConfigFile);
