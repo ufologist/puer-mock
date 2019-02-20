@@ -1,5 +1,11 @@
 # CHANGELOG
 
+* v1.2.4 2019-2-20
+
+  * [fixbug] #15 在 Node 10+ 的版本下 [`fs.utimes`](https://nodejs.org/docs/latest-v10.x/api/fs.html#fs_fs_utimes_path_atime_mtime_callback) 的 `callback` 参数不再是可选的
+
+    > v10.0.0 The callback parameter is no longer optional. Not passing it will throw a TypeError at runtime.
+
 * v1.2.3 2017-10-12
 
   * 升级 [mock-route](https://github.com/ufologist/mock-route) 模块到 `1.4.0` 版本, 现在支持 `proxy` 配置代理接口了
