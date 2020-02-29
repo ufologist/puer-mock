@@ -162,6 +162,10 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 
 以下是目前的一些实现方案, 可以作为接口管理平台的技术选型.
 
+* [YApi | 去哪儿](https://github.com/YMFE/yapi)
+
+  > 可视化接口管理平台
+
 * [Creating Help Pages for ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages)
 
   > When you create a web API, it is often useful to create a help page, so that other developers will know how to call your API. You could create all of the documentation manually, but it is better to autogenerate as much as possible. ASP.NET Web API provides a library for auto-generating help pages at run time. [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle) that uses ApiExplorer to generate [Swagger](http://swagger.io/) Docs.
@@ -177,10 +181,6 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 * [Easy Mock | 大搜车](https://github.com/easy-mock/easy-mock)
 
   > Easy Mock 是一个可视化，并且能快速生成模拟数据的持久化服务
-
-* [YApi | 去哪儿](https://github.com/YMFE/yapi)
-
-  > 可视化接口管理平台
 
 * [api-document](https://github.com/yalishizhude/api-document)
 
@@ -252,3 +252,7 @@ puer-mock 还内置了可在线查看的 API doc(即接口文档), 可以看到�
 * [前后端分离了，然后呢？](http://icodeit.org/2015/06/whats-next-after-separate-frontend-and-backend/)
 
   > 前后端分离是一件容易的事情，而且团队可能在短期可以看到很多好处，但是如果不认真处理集成的问题，分离反而可能会带来更长的集成时间。通过面向契约的方式来组织各自的测试，可以带来很多的好处：更快速的End2End测试，更平滑的集成，更安全的分离开发等等。
+
+* [使用 svrx 实现更优雅的接口 Mock](https://docs.svrx.io/zh/blog/mock.html)
+
+  > 目前 Web 开发普遍都切换到了前后端分离的开发模式。虽然在工程和职能上已经分离了，但在实际工作中，前后端在开发进度上往往会出现不一致的情况，此时就会极大地影响开发效率。 接口 mock 在此时就发挥出了巨大价值，它磨平了这个时间差，最终实现高效的前后端分离开发。
